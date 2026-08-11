@@ -6,10 +6,17 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>이재상과 권진경의 결혼식</title>
     <meta content="이재상과 권진경의 결혼식에 와서 축하해주세요~!" name="description"/>
+
+    <!-- ========================================================= -->
+    <!-- 아래 og:image, favicon 은 브라우저가 HTML만 읽고 바로 처리하는  -->
+    <!-- 항목이라 자바스크립트로 자동화가 안 됩니다. 사진 바꿀 때 여기만  -->
+    <!-- 직접 수정해주세요. (파일명만 바꾸면 됩니다)                    -->
+    <!-- ========================================================= -->
     <meta property="og:image" content="images/main.png">
     <link href="images/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
     <link href="images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
     <link href="images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link href="css/ekko-lightbox.css" rel="stylesheet">
@@ -20,10 +27,78 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.js" type="text/javascript"></script>
+
+    <!-- ========================================================= -->
+    <!--                🌟 사진 중앙 관리 구역 🌟                    -->
+    <!--   여기 파일명만 바꾸면 사이트 전체 사진이 다 바뀝니다!         -->
+    <!--   갤러리(gallery 배열)는 사진을 몇 장이든 추가/삭제 가능합니다  -->
+    <!-- ========================================================= -->
     <script type="text/javascript">
+        const SITE_IMAGES = {
+            // 신랑 / 신부 사진
+            groom: "images/pic8.jpeg",
+            bride: "images/pic9.jpeg",
 
+            // 초대 섹션 사진
+            eventPhoto: "images/wedding-party.jpg",
+
+            // 갤러리 사진들 - 여기 배열에 줄만 추가/삭제하면 개수가 자동으로 조절됩니다
+            gallery: [
+                { src: "images/pic2.jpeg", alt: "Gallery Pic 1" },
+                { src: "images/pic3.jpeg", alt: "Gallery Pic 2" },
+                { src: "images/pic4.jpeg", alt: "Gallery Pic 3" },
+                { src: "images/pic6.jpeg", alt: "Gallery Pic 4" },
+                { src: "images/pic7.jpeg", alt: "Gallery Pic 5" },
+                { src: "images/pic5.jpeg", alt: "Gallery Pic 6" }
+                // 예시로 사진 추가하고 싶으면 아래처럼 그냥 줄을 더 넣으면 됩니다:
+                // { src: "images/pic10.jpeg", alt: "Gallery Pic 7" },
+            ],
+
+            // 지도 아이콘
+            maps: {
+                naver: "images/map/naver-map.png",
+                kakao: "images/map/kakao-map.png",
+                google: "images/map/google-map.png"
+            }
+        };
+
+        // 페이지 로드 완료되면 위 설정값을 화면에 자동으로 채워넣는 스크립트
+        document.addEventListener("DOMContentLoaded", function () {
+            // 신랑/신부 사진
+            document.getElementById("groom-photo").src = SITE_IMAGES.groom;
+            document.getElementById("bride-photo").src = SITE_IMAGES.bride;
+
+            // 초대 섹션 사진
+            document.getElementById("event-photo").src = SITE_IMAGES.eventPhoto;
+
+            // 지도 아이콘
+            document.getElementById("naver-map").src = SITE_IMAGES.maps.naver;
+            document.getElementById("kakao-map").src = SITE_IMAGES.maps.kakao;
+            document.getElementById("google-map").src = SITE_IMAGES.maps.google;
+
+            // 갤러리 - 배열 개수만큼 자동으로 카드를 만들어서 넣어줌
+            const galleryContainer = document.getElementById("gallery-container");
+            SITE_IMAGES.gallery.forEach(function (photo) {
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const link = document.createElement("a");
+                link.setAttribute("data-gallery", "ww-gallery");
+                link.setAttribute("data-toggle", "lightbox");
+
+                const img = document.createElement("img");
+                img.className = "img-fluid";
+                img.src = photo.src;
+                img.alt = photo.alt;
+
+                link.appendChild(img);
+                card.appendChild(link);
+                galleryContainer.appendChild(card);
+            });
+        });
+
+        // ---- 아래는 기존 축하메시지 불러오는 스크립트 (그대로 유지) ----
         $(document).ready(function () {
-
             function getText(){
                 var result = null;
                 $.ajax( { url: "https://raw.githubusercontent.com/AndersonChoi/wedding-card/master/README.md",
@@ -33,17 +108,13 @@
                         success: function(data) { result = data; }
                     }
                 );
-                FileReady = true;
                 return result;
             }
             var markdown_source = getText();
             var comment_contents = markdown_source.split("축하의 말")[1];
-
             var md = new Remarkable();
             $("#comments").append(md.render(comment_contents));
-
         });
-
     </script>
 </head>
 
@@ -93,14 +164,14 @@
                         <div class="mt-3">
                             <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
                                 권진경</h3>
-                            <img alt="Groom" class="img-fluid" src="images/pic8.jpeg"/>
+                            <img alt="Groom" class="img-fluid" id="groom-photo"/>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mt-3">
                             <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
                                 이재상</h3>
-                            <img alt="Bride" class="img-fluid" src="images/pic9.jpeg"/>
+                            <img alt="Bride" class="img-fluid" id="bride-photo"/>
                         </div>
                     </div>
                 </div>
@@ -127,7 +198,7 @@
                     </div>
                     <div class="col-md-5 col-sm-12">
                         <div class="my-3">
-                            <img alt="Wedding Party" class="img-fluid" src="images/wedding-party.jpg"/>
+                            <img alt="Wedding Party" class="img-fluid" id="event-photo"/>
                         </div>
                     </div>
                 </div>
@@ -138,38 +209,8 @@
                 <div class="container">
                     <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">포토 갤러리</h2>
                     <div class="ww-gallery">
-                        <div class="card-columns">
-                            <div class="card" data-groups="[&quot;party&quot;,&quot;wedding&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 2" class="img-fluid" src="images/pic2.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 3" class="img-fluid" src="images/pic3.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;party&quot;,&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 4" class="img-fluid" src="images/pic4.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 5" class="img-fluid" src="images/pic6.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card"
-                                 data-groups="[&quot;wedding&quot;,&quot;ceremony&quot;,&quot;party&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 6" class="img-fluid" src="images/pic7.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 7" class="img-fluid" src="images/pic5.jpeg"/>
-                                </a>
-                            </div>
+                        <!-- 이 안은 이제 비워두고, 위 SITE_IMAGES.gallery 배열로 자동 채워집니다 -->
+                        <div class="card-columns" id="gallery-container">
                         </div>
                     </div>
                 </div>
@@ -189,16 +230,13 @@
                     <div class="col-md-12">
                         <div class="my-3 text-center">
                             <a href="https://map.naver.com/p/entry/place/12159697">
-                                <img alt="naver-map" class="map-icon" id="naver-map"
-                                     src="images/map/naver-map.png"/>
+                                <img alt="naver-map" class="map-icon" id="naver-map"/>
                             </a>
                             <a href="https://map.kakao.com/?q=BMK컨벤션">
-                                <img alt="kakao-map" class="map-icon" id="kakao-map"
-                                     src="images/map/kakao-map.png"/>
+                                <img alt="kakao-map" class="map-icon" id="kakao-map"/>
                             </a>
                             <a href="https://www.google.com/maps/search/?api=1&query=대전+중구+서문로+133+BMK컨벤션">
-                                <img alt="google-map" class="map-icon" id="google-map"
-                                     src="images/map/google-map.png"/>
+                                <img alt="google-map" class="map-icon" id="google-map"/>
                             </a>
                         </div>
                         <div class="my-3">
