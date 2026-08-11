@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <title>이재상과 권진경의 결혼식</title>
-    <meta content="이재상과 권진경의 결혼식에 와서 축하해주세요~!" name="description"/>
+    <title>11월 7일, 결혼합니다</title>
+    <meta content="결혼식에 와서 축하해주세요~!" name="description"/>
 
     <!-- ========================================================= -->
     <!-- 아래 og:image, favicon 은 브라우저가 HTML만 읽고 바로 처리하는  -->
@@ -64,9 +64,36 @@
 
         // 페이지 로드 완료되면 위 설정값을 화면에 자동으로 채워넣는 스크립트
         document.addEventListener("DOMContentLoaded", function () {
-            // 신랑/신부 사진
-            document.getElementById("groom-photo").src = SITE_IMAGES.groom;
-            document.getElementById("bride-photo").src = SITE_IMAGES.bride;
+           // 페이지 로드 완료되면 위 설정값을 화면에 자동으로 채워넣는 스크립트
+document.addEventListener("DOMContentLoaded", function () {
+    // 초대 섹션 사진
+    document.getElementById("event-photo").src = SITE_IMAGES.eventPhoto;
+
+    // 지도 아이콘
+    document.getElementById("naver-map").src = SITE_IMAGES.maps.naver;
+    document.getElementById("kakao-map").src = SITE_IMAGES.maps.kakao;
+    document.getElementById("google-map").src = SITE_IMAGES.maps.google;
+
+    // 갤러리 - 배열 개수만큼 자동으로 카드를 만들어서 넣어줌
+    const galleryContainer = document.getElementById("gallery-container");
+    SITE_IMAGES.gallery.forEach(function (photo) {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const link = document.createElement("a");
+        link.setAttribute("data-gallery", "ww-gallery");
+        link.setAttribute("data-toggle", "lightbox");
+
+        const img = document.createElement("img");
+        img.className = "img-fluid";
+        img.src = photo.src;
+        img.alt = photo.alt;
+
+        link.appendChild(img);
+        card.appendChild(link);
+        galleryContainer.appendChild(card);
+    });
+});
 
             // 초대 섹션 사진
             document.getElementById("event-photo").src = SITE_IMAGES.eventPhoto;
@@ -157,26 +184,26 @@
             </nav>
         </div>
         <div class="ww-section" id="couple">
-            <div class="container">
-                <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">신랑 & 신부</h2>
-                <div class="row text-center">
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
-                                권진경</h3>
-                            <img alt="Groom" class="img-fluid" id="groom-photo"/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
-                                이재상</h3>
-                            <img alt="Bride" class="img-fluid" id="bride-photo"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="text-center love-story-box">
+            <h2 class="h1 pb-4 ww-title" style="font-family: 'Noto Serif KR', serif;">
+                우리의 이야기
+            </h2>
+
+            <p class="love-story-text">
+                3년 전, 폴란드와 한국<br class="d-sm-none">
+                <span class="love-story-distance">8,130km</span>의 거리 앞에서<br>
+                스쳐 갈 인연일 줄 알았던 두 사람의 처음.
+            </p>
+
+            <p class="love-story-text mt-4">
+                끊임없이 사랑으로 거리를 좁힌 두 사람은<br>
+                인생의 남은 거리를 함께 걷기로 하였습니다.
+            </p>
         </div>
+    </div>
+</div>
+
         <div class="ww-section bg-light" id="events">
             <div class="container ww-wedding-event">
                 <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">초대합니다</h2>
