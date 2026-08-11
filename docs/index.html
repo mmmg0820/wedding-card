@@ -8,17 +8,19 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
   :root{
-    --bg: #ffffff;
-    --bg-soft: #faf8f5;
-    --text: #2e2a27;
-    --text-muted: #8c847d;
-    --line: #ece6df;
-    --accent: #b78a6d;
+    /* ===== theme.ts 색상 토큰 ===== */
+    --bg: #efebe9;
+    --bg-soft: #ffffff;
+    --text: rgba(0, 0, 0, 0.82);
+    --text-muted: rgba(0, 0, 0, 0.62);
+    --line: rgba(0, 0, 0, 0.12);
+    --accent: #a8434a;
+    --accent-surface: rgba(168, 67, 74, 0.08);
     --radius: 6px;
     --gap-sm: 8px;
     --gap-md: 16px;
@@ -30,7 +32,7 @@
 
   body{
     margin:0;
-    font-family:'Noto Sans KR', sans-serif;
+    font-family:'Noto Serif KR', 'Apple SD Gothic Neo', 'Malgun Gothic', serif;
     color:var(--text);
     background:var(--bg);
     word-break: keep-all;
@@ -100,11 +102,11 @@
     margin-bottom: 4px;
   }
 
-  /* ---------- Nav ---------- */
+  /* ---------- Nav (중앙 정렬 복구) ---------- */
   .nav-bar{
     position: sticky;
     top:0;
-    background: rgba(255,255,255,0.92);
+    background: rgba(239,235,233,0.92);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
     z-index: 50;
@@ -113,17 +115,24 @@
     max-width: 480px;
     margin:0 auto;
     display:flex;
-    justify-content:center;
-    gap: var(--gap-lg);
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-md);
     padding: var(--gap-md) var(--gap-lg);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .nav-inner::-webkit-scrollbar{ display: none; }
   .nav-inner a{
-    font-size: 0.75rem;
-    letter-spacing: 1px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration:none;
     transition: color .2s;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .nav-inner a:hover{ color: var(--accent); }
 
@@ -248,6 +257,120 @@
   }
   .map-frame iframe{ width:100%; height:280px; border:0; display:block; }
 
+  /* ---------- Account ---------- */
+  .account-toggle-group{
+    display:flex;
+    gap: var(--gap-sm);
+    margin-bottom: var(--gap-md);
+  }
+  .account-toggle-btn{
+    flex:1;
+    padding: 12px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 6px;
+    transition: background .2s, border-color .2s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .account-toggle-btn:hover{ border-color: var(--accent); }
+  .account-toggle-btn.active{
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .account-toggle-btn i{
+    font-size: 0.75rem;
+    transition: transform .2s;
+  }
+  .account-toggle-btn.active i{ transform: rotate(180deg); }
+
+  .account-panel{
+    display:none;
+    margin-bottom: var(--gap-md);
+  }
+  .account-panel.open{ display:block; }
+
+  .account-card{
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin-bottom: var(--gap-sm);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    cursor:pointer;
+    transition: background .2s, border-color .2s;
+  }
+  .account-card:last-child{ margin-bottom:0; }
+  .account-card:hover{ border-color: var(--accent); }
+  .account-card.copied{
+    background: var(--accent-surface);
+    border-color: var(--accent);
+  }
+  .account-info{ text-align:left; }
+  .account-relation{
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .account-name{
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .account-number{
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .account-copy-hint{
+    font-size: 0.75rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    white-space: nowrap;
+    display:flex;
+    align-items:center;
+    gap: 4px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--text);
+    color:#fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    opacity: 0;
+    pointer-events:none;
+    transition: opacity .25s, transform .25s;
+    z-index: 200;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   /* ---------- Comments ---------- */
   #messageForm input,
   #messageForm textarea{
@@ -257,8 +380,9 @@
     border:1px solid var(--line);
     border-radius: var(--radius);
     font-size: 0.9rem;
-    font-family: inherit;
+    font-family: 'Noto Sans KR', sans-serif;
     background: var(--bg-soft);
+    color: var(--text);
   }
   #messageForm input:focus,
   #messageForm textarea:focus{
@@ -277,6 +401,7 @@
     font-weight:500;
     cursor:pointer;
     transition: background .2s;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   #messageForm button:hover{ background: var(--accent); }
   #messageForm button:disabled{ opacity:0.6; cursor:not-allowed; }
@@ -290,18 +415,21 @@
   .message-item strong{
     font-size:0.85rem;
     color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
   }
   .message-item p{
     margin: 4px 0 0 0;
     font-size:0.85rem;
     color: var(--text-muted);
     line-height:1.6;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   .message-empty{
     text-align:center;
     color: var(--text-muted);
     font-size:0.85rem;
     padding: var(--gap-lg) 0;
+    font-family: 'Noto Sans KR', sans-serif;
   }
 
   /* ---------- Floating Buttons ---------- */
@@ -405,6 +533,21 @@
   </div>
 </section>
 
+<!-- Account -->
+<section class="section" id="account">
+  <h2 class="section-title">마음 전하실 곳</h2>
+  <div class="account-toggle-group">
+    <button class="account-toggle-btn" id="btn-groom" onclick="toggleAccount('groom')">
+      신랑측 계좌번호 <i class="fa fa-chevron-down"></i>
+    </button>
+    <button class="account-toggle-btn" id="btn-bride" onclick="toggleAccount('bride')">
+      신부측 계좌번호 <i class="fa fa-chevron-down"></i>
+    </button>
+  </div>
+  <div class="account-panel" id="panel-groom"></div>
+  <div class="account-panel" id="panel-bride"></div>
+</section>
+
 <!-- Comments -->
 <section class="section" id="comment">
   <h2 class="section-title">축하 메시지</h2>
@@ -425,6 +568,9 @@
   <i class="fa fa-music"></i>
 </div>
 
+<!-- Toast -->
+<div class="toast" id="toast">계좌번호가 복사되었습니다</div>
+
 <script>
   const CONFIG = {
     eventPhoto: "images/wedding-party.jpg",
@@ -443,6 +589,18 @@
       kakaoUrl: "https://map.kakao.com/?q=BMK컨벤션",
       googleIcon: "images/map/google-map.png",
       googleUrl: "https://www.google.com/maps/search/?api=1&query=대전+중구+서문로+133+BMK컨벤션"
+    },
+    accounts: {
+      groom: [
+        { relation: "신랑", name: "이재상", bank: "국민은행", number: "123456-78-901234" },
+        { relation: "신랑 아버지", name: "이OO", bank: "신한은행", number: "110-123-456789" },
+        { relation: "신랑 어머니", name: "김OO", bank: "우리은행", number: "1002-123-456789" }
+      ],
+      bride: [
+        { relation: "신부", name: "권진경", bank: "카카오뱅크", number: "3333-01-1234567" },
+        { relation: "신부 아버지", name: "권OO", bank: "농협은행", number: "123-4567-8901-23" },
+        { relation: "신부 어머니", name: "박OO", bank: "하나은행", number: "111-222222-33333" }
+      ]
     }
   };
 
@@ -460,7 +618,81 @@
     document.getElementById("link-kakao").href = CONFIG.map.kakaoUrl;
     document.getElementById("img-map-google").src = CONFIG.map.googleIcon;
     document.getElementById("link-google").href = CONFIG.map.googleUrl;
+
+    renderAccounts();
   });
+
+  function maskAccountNumber(number){
+    return number.replace(/[0-9]/g, '•');
+  }
+
+  function renderAccounts(){
+    ['groom', 'bride'].forEach(side => {
+      const list = CONFIG.accounts[side] || [];
+      const panel = document.getElementById(`panel-${side}`);
+      if (list.length === 0){
+        document.getElementById(`btn-${side}`).style.display = 'none';
+        return;
+      }
+      panel.innerHTML = list.map(acc => `
+        <div class="account-card" data-number="${acc.number}" onclick="copyAccount(this)">
+          <div class="account-info">
+            <div class="account-relation">${acc.relation}</div>
+            <div class="account-name">${acc.name} · ${acc.bank}</div>
+            <div class="account-number">${maskAccountNumber(acc.number)}</div>
+          </div>
+          <span class="account-copy-hint"><i class="fa fa-copy"></i>복사</span>
+        </div>
+      `).join('');
+    });
+  }
+
+  function toggleAccount(side){
+    const panel = document.getElementById(`panel-${side}`);
+    const btn = document.getElementById(`btn-${side}`);
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.classList.toggle('active', !isOpen);
+  }
+
+  function copyAccount(el){
+    const number = el.getAttribute('data-number').replace(/-/g, '');
+
+    const fallbackCopy = (text) => {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      temp.style.position = 'fixed';
+      temp.style.opacity = '0';
+      document.body.appendChild(temp);
+      temp.focus();
+      temp.select();
+      try { document.execCommand('copy'); }
+      finally { document.body.removeChild(temp); }
+    };
+
+    const showFeedback = () => {
+      el.classList.add('copied');
+      showToast('계좌번호가 복사되었습니다');
+      setTimeout(() => el.classList.remove('copied'), 700);
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(number)
+        .then(showFeedback)
+        .catch(() => { fallbackCopy(number); showFeedback(); });
+    } else {
+      fallbackCopy(number);
+      showFeedback();
+    }
+  }
+
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => toast.classList.remove('show'), 1600);
+  }
 
   document.getElementById('audio-toggle').addEventListener('click', () => {
     const audio = document.getElementById('player');
