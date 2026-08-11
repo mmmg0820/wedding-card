@@ -1,4 +1,4 @@
-html_content = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
@@ -18,22 +18,9 @@ html_content = '''<!DOCTYPE html>
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
 
-
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.js" type="text/javascript"></script>
     <script type="text/javascript">
-        function findGetParameter(parameterName) {
-            var result = null,
-                tmp = [];
-            location.search
-                .substr(1)
-                .split("&")
-                .forEach(function (item) {
-                  tmp = item.split("=");
-                  if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-                });
-            return result;
-        }
 
         $(document).ready(function () {
 
@@ -54,10 +41,8 @@ html_content = '''<!DOCTYPE html>
 
             var md = new Remarkable();
             $("#comments").append(md.render(comment_contents));
+
         });
-
-
-
 
     </script>
 </head>
@@ -195,33 +180,32 @@ html_content = '''<!DOCTYPE html>
                 <div class="col text-center">
                     <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">오시는 길</h2>
                     <div>
-                        <h5 style="font-family: 'Noto Serif KR', serif;">센텀사이언스파크웨딩홀 23층 스카이홀</h5>
-                        <h6 style="font-family: 'Noto Serif KR', serif;">(부산 해운대구 센텀중앙로 79)</h6>
+                        <h5 style="font-family: 'Noto Serif KR', serif;">The BMK 컨벤션 (더 BMK웨딩홀) 4층</h5>
+                        <h6 style="font-family: 'Noto Serif KR', serif;">(대전광역시 중구 서문로 133)</h6>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-md-12">
                         <div class="my-3 text-center">
-                            <a href="http://naver.me/5pTy3HCa">
+                            <a href="https://map.naver.com/p/entry/place/12159697">
                                 <img alt="naver-map" class="map-icon" id="naver-map"
                                      src="images/map/naver-map.png"/>
                             </a>
-                            <a href="http://dmaps.kr/2bms8">
+                            <a href="https://map.kakao.com/?q=BMK컨벤션">
                                 <img alt="kakao-map" class="map-icon" id="kakao-map"
                                      src="images/map/kakao-map.png"/>
                             </a>
-                            <a href="https://maps.app.goo.gl/jfDxw">
+                            <a href="https://www.google.com/maps/search/?api=1&query=대전+중구+서문로+133+BMK컨벤션">
                                 <img alt="google-map" class="map-icon" id="google-map"
                                      src="images/map/google-map.png"/>
                             </a>
                         </div>
                         <div class="my-3">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.297439052569!2d129.1238775160104!3d35.1741384652207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x356892c2513ecf5d%3A0x7d362ece2091e2f8!2z7IS87YWA7IKs7J207Ja47Iqk7YyM7YGsIOy7qOuypOyFmO2ZgA!5e0!3m2!1sko!2skr!4v1554092125630!5m2!1sko!2skr" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps?q=대전광역시+중구+서문로+133+BMK컨벤션&output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
-
 
             </div>
         </div>
@@ -267,10 +251,3 @@ html_content = '''<!DOCTYPE html>
 
 </body>
 </html>
-'''
-
-with open('/home/user/wedding_card.html', 'w', encoding='utf-8') as f:
-    f.write(html_content)
-
-print("파일 저장 완료, 길이:", len(html_content))
-
