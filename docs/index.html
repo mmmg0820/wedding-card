@@ -1,119 +1,193 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>이재상과 권진경의 결혼식</title>
-    <meta content="이재상과 권진경의 결혼식에 와서 축하해주세요~!" name="description"/>
+    <meta name="description" content="이재상과 권진경의 결혼식에 와서 축하해주세요~!"/>
     <meta property="og:image" content="images/pic2.jpeg">
-    <link href="images/favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
-    <link href="images/favicon/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
-    <link href="images/favicon/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
-    <link href="https://fonts.googleapis.com/css?family=Dosis:400,500" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-    <link href="css/ekko-lightbox.css" rel="stylesheet">
-    <link href="styles/main.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Gugi|Noto+Serif+KR|Stylish|Sunflower:300"
-          rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+
+    <!-- Fonts: Noto Sans KR (기본) + Gamja Flower (우리의 이야기 전용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ekko-lightbox.css">
+    <link rel="stylesheet" href="styles/main.css">
 
     <style>
-      /* Love Story Section */
+      /* Global Font Setting */
+      body, input, textarea, button, h1, h2, h3, h4, h5, h6 {
+          font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+          word-break: keep-all;
+      }
+
+      /* Home Main Section */
+      .ww-wedding-announcement {
+          padding: 60px 15px;
+          text-align: center;
+      }
+      .main-title-names {
+          font-size: clamp(2.5rem, 8vw, 4rem);
+          font-weight: 700;
+          margin-bottom: 10px;
+      }
+      .main-title-sub {
+          font-size: clamp(0.9rem, 3vw, 1.1rem);
+          letter-spacing: 2px;
+          color: #666;
+      }
+      .main-title-date {
+          font-size: clamp(1rem, 3.5vw, 1.25rem);
+          line-height: 1.6;
+      }
+
+      /* Love Story Section (Gamja Flower Font Keep) */
       .love-story-box {
           max-width: 760px;
           margin: 0 auto;
-          padding: 45px 28px;
-          border-radius: 28px;
-          background: rgba(255, 248, 246, 0.85);
-          box-shadow: 0 12px 35px rgba(245, 138, 119, 0.18);
+          padding: 40px 20px;
+          border-radius: 24px;
+          background: rgba(255, 248, 246, 0.9);
+          box-shadow: 0 10px 30px rgba(245, 138, 119, 0.12);
           border: 1px solid rgba(245, 138, 119, 0.18);
       }
-
+      .love-story-title {
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #4a3b37;
+      }
       .love-story-text {
-          font-family: 'Gamja Flower', cursive;
-          font-size: 2.05rem;
-          line-height: 1.75;
+          font-family: 'Gamja Flower', cursive !important;
+          font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+          line-height: 1.7;
           color: #5b4742;
-          letter-spacing: -0.5px;
           margin-bottom: 0;
       }
-
       .love-story-distance {
           display: inline-block;
-          padding: 0 8px;
+          padding: 0 6px;
           color: #f26147;
-          font-size: 2.45rem;
+          font-size: clamp(1.7rem, 5.5vw, 2.3rem);
           font-weight: 700;
       }
 
-      @media (max-width: 576px) {
-          .love-story-box {
-              padding: 36px 20px;
-              border-radius: 22px;
-          }
-
-          .love-story-text {
-              font-size: 1.55rem;
-              line-height: 1.8;
-          }
-
-          .love-story-distance {
-              font-size: 1.9rem;
-          }
+      /* Map Section Mobile Optimization */
+      .map-icon {
+          width: 44px;
+          height: 44px;
+          margin: 0 8px;
+          transition: transform 0.2s;
+      }
+      .map-icon:active { transform: scale(0.95); }
+      .map-container {
+          position: relative;
+          width: 100%;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       }
 
       /* Congrats Message Section */
-      #congrats-section { max-width: 500px; margin: 0 auto; padding: 20px; }
+      #congrats-section { max-width: 500px; margin: 0 auto; }
       #messageForm input, #messageForm textarea {
-        width: 100%; padding: 10px; margin-bottom: 10px;
-        border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;
-        font-family: 'Noto Serif KR', serif;
+          width: 100%;
+          padding: 12px 14px;
+          margin-bottom: 10px;
+          border: 1px solid #e0e0e0;
+          border-radius: 10px;
+          box-sizing: border-box;
+          font-size: 0.95rem;
       }
-      #messageForm textarea { resize: vertical; min-height: 80px; }
+      #messageForm textarea { resize: vertical; min-height: 90px; }
       #messageForm button {
-        width: 100%; padding: 12px; background: #d8a48f;
-        color: white; border: none; border-radius: 8px; cursor: pointer;
-        font-family: 'Noto Serif KR', serif; font-size: 1em;
+          width: 100%;
+          padding: 14px;
+          background: #d8a48f;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          font-weight: 500;
+          font-size: 1rem;
       }
       #messageForm button:hover { background: #c88f78; }
-      #messageList { margin-top: 20px; text-align: left; }
+      #messageList { margin-top: 24px; text-align: left; }
       .message-item {
-        background: #fdf6f0; padding: 12px 16px; margin-bottom: 10px;
-        border-radius: 10px;
+          background: #fdf6f0;
+          padding: 14px 16px;
+          margin-bottom: 12px;
+          border-radius: 12px;
       }
-      .message-item strong { color: #a06843; font-family: 'Noto Serif KR', serif; }
-      .message-item p { margin: 6px 0 0 0; word-break: break-word; }
-      .message-empty { color: #999; padding: 10px 0; }
+      .message-item strong { color: #a06843; font-size: 0.95rem; }
+      .message-item p { margin: 6px 0 0 0; color: #444; font-size: 0.9rem; line-height: 1.5; }
+      .message-empty { color: #999; padding: 20px 0; }
+
+      /* Floating Bottom Buttons */
+      .bottom_right {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 999;
+          background: rgba(255,255,255,0.9);
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: pointer;
+      }
+      .bottom_left {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          z-index: 999;
+          background: rgba(255,255,255,0.9);
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          cursor: pointer;
+      }
     </style>
 </head>
 
 <body id="top">
-<header></header>
 <div class="page-content">
     <div class="div">
+        <!-- Main Section -->
         <div class="ww-home-page" id="home">
-            <div class="ww-wedding-announcement d-flex align-items-center justify-content-start">
+            <div class="ww-wedding-announcement d-flex align-items-center justify-content-center">
                 <div class="container ww-announcement-container">
-                    <p class="ww-couple-name ww-title" style="font-size:4.0em">J + J</p>
-                    <p class="h2 mt-5 ww-title" style="font-family: 'Gugi', cursive; font-size:1.0em">
-                        | WE ARE GETTING MARRIED |
-                    </p>
-                    <p class="h2 mt-5 ww-title"
-                       style="font-family: 'Noto Serif KR', serif; font-size:1.0em; letter-spacing:-1px">
-                        <b style="font-size:1.4em;">2026. 11. 07. 토요일 오후 2시</b>
-                        <br>대전 BMK웨딩홀 4층
+                    <p class="main-title-names">J + J</p>
+                    <p class="main-title-sub mt-4">| WE ARE GETTING MARRIED |</p>
+                    <p class="main-title-date mt-4">
+                        <b>2026. 11. 07. 토요일 오후 2시</b><br>
+                        대전 BMK웨딩홀 4층
                     </p>
                 </div>
             </div>
         </div>
+
+        <!-- Navigation Bar -->
         <div class="ww-nav-bar sticky-top bg-light">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <button aria-controls="ww-navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-                            class="navbar-toggler"
-                            data-target="#ww-navbarNav" data-toggle="collapse" type="button">
+                            class="navbar-toggler" data-target="#ww-navbarNav" data-toggle="collapse" type="button">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse text-uppercase" id="ww-navbarNav">
@@ -122,44 +196,45 @@
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#couple">Couple</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#events">Events</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#gallery">Gallery</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#map">Location</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
+
+        <!-- Love Story Section -->
         <div class="ww-section" id="couple">
             <div class="container">
                 <div class="text-center love-story-box">
-                    <h2 class="h1 pb-4 ww-title" style="font-family: 'Noto Serif KR', serif;">
-                        우리의 이야기
-                    </h2>
-
+                    <h2 class="love-story-title pb-3">우리의 이야기</h2>
                     <p class="love-story-text">
                         3년 전, 폴란드와 한국<br class="d-sm-none">
                         <span class="love-story-distance">8,130km</span>의 거리 앞에서<br>
                         스쳐 갈 인연일 줄 알았던 두 사람의 처음.
                     </p>
-
-                    <p class="love-story-text mt-4">
+                    <p class="love-story-text mt-3">
                         끊임없이 사랑으로 거리를 좁힌 두 사람은<br>
                         인생의 남은 거리를 함께 걷기로 하였습니다.
                     </p>
                 </div>
             </div>
         </div>
+
+        <!-- Event Section -->
         <div class="ww-section bg-light" id="events">
             <div class="container ww-wedding-event">
-                <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">초대합니다</h2>
-                <div class="row">
+                <h2 class="h2 text-center pb-3 font-weight-bold">초대합니다</h2>
+                <div class="row align-items-center">
                     <div class="col-md-7 col-sm-12">
                         <div class="my-3">
-                            <div class="h4">웨딩 본식</div>
-                            <ul>
-                                <li>
+                            <div class="h4 font-weight-bold">웨딩 본식</div>
+                            <ul class="list-unstyled mt-3">
+                                <li class="mb-2">
                                     <i class="text-muted fas fa-map-marker-alt"></i>
                                     <span class="pl-2 text-muted">대전 BMK웨딩홀 4층</span>
                                 </li>
-                                <li class="pt-2">
+                                <li>
                                     <i class="text-muted far fa-calendar-alt"></i>
                                     <span class="pl-2 text-muted">2026년 11월 7일, 오후 2시</span>
                                 </li>
@@ -167,117 +242,86 @@
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-12">
-                        <div class="my-3">
-                            <img alt="Wedding Party" class="img-fluid" src="images/wedding-party.jpg"/>
+                        <div class="my-3 text-center">
+                            <img id="img-event" alt="Wedding Party" class="img-fluid rounded shadow-sm"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Gallery Section -->
         <div class="ww-section" id="gallery">
             <div class="ww-photo-gallery">
                 <div class="container">
-                    <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">포토 갤러리</h2>
+                    <h2 class="h2 text-center pb-3 font-weight-bold">포토 갤러리</h2>
                     <div class="ww-gallery">
-                        <div class="card-columns">
-                            <div class="card" data-groups="[&quot;party&quot;,&quot;wedding&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 2" class="img-fluid" src="images/pic2.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 3" class="img-fluid" src="images/pic3.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;party&quot;,&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 4" class="img-fluid" src="images/pic4.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 5" class="img-fluid" src="images/pic6.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card"
-                                 data-groups="[&quot;wedding&quot;,&quot;ceremony&quot;,&quot;party&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 6" class="img-fluid" src="images/pic7.jpeg"/>
-                                </a>
-                            </div>
-                            <div class="card" data-groups="[&quot;vacation&quot;]">
-                                <a data-gallery="ww-gallery" data-toggle="lightbox">
-                                    <img alt="Gallery Pic 7" class="img-fluid" src="images/pic5.jpeg"/>
-                                </a>
-                            </div>
+                        <div class="card-columns" id="gallery-container">
+                            <!-- JS를 통해 이미지가 동적으로 삽입됩니다 -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ww-section ww-rsvp-detail" id="map">
+
+        <!-- Map Section -->
+        <div class="ww-section ww-rsvp-detail bg-light" id="map">
             <div class="container">
                 <div class="col text-center">
-                    <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">오시는 길</h2>
+                    <h2 class="h2 text-center pb-3 font-weight-bold">오시는 길</h2>
                     <div>
-                        <h5 style="font-family: 'Noto Serif KR', serif;">The BMK 컨벤션 (더 BMK웨딩홀) 4층</h5>
-                        <h6 style="font-family: 'Noto Serif KR', serif;">(대전광역시 중구 서문로 133)</h6>
+                        <h5 class="font-weight-bold">The BMK 컨벤션 4층</h5>
+                        <p class="text-muted">(대전광역시 중구 서문로 133)</p>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="my-3 text-center">
-                            <a href="https://map.naver.com/p/entry/place/12159697">
-                                <img alt="naver-map" class="map-icon" id="naver-map"
-                                     src="images/map/naver-map.png"/>
-                            </a>
-                            <a href="https://map.kakao.com/?q=BMK컨벤션">
-                                <img alt="kakao-map" class="map-icon" id="kakao-map"
-                                     src="images/map/kakao-map.png"/>
-                            </a>
-                            <a href="https://www.google.com/maps/search/?api=1&query=대전+중구+서문로+133+BMK컨벤션">
-                                <img alt="google-map" class="map-icon" id="google-map"
-                                     src="images/map/google-map.png"/>
-                            </a>
+                            <a id="link-naver" target="_blank"><img id="img-map-naver" alt="naver-map" class="map-icon"/></a>
+                            <a id="link-kakao" target="_blank"><img id="img-map-kakao" alt="kakao-map" class="map-icon"/></a>
+                            <a id="link-google" target="_blank"><img id="img-map-google" alt="google-map" class="map-icon"/></a>
                         </div>
-                        <div class="my-3">
-                            <iframe src="https://www.google.com/maps?q=대전광역시+중구+서문로+133+BMK컨벤션&output=embed" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <div class="my-3 map-container">
+                            <iframe src="https://www.google.com/maps?q=대전광역시+중구+서문로+133+BMK컨벤션&output=embed" width="100%" height="360" frameborder="0" style="border:0;" allowfullscreen loading="lazy"></iframe>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="ww-section bg-light" id="comment">
-            <div class="ww-photo-gallery">
-                <div class="container">
-                    <div class="col text-center">
-                        <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">축하메시지</h2><br>
-
-                        <div id="congrats-section">
-                            <form id="messageForm">
-                                <input type="text" id="guestName" placeholder="이름" required maxlength="50">
-                                <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요 :)" required maxlength="500"></textarea>
-                                <button type="submit">메시지 남기기</button>
-                            </form>
-                            <div id="messageList">
-                                <p class="message-empty">메시지를 불러오는 중입니다...</p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Comments Section -->
+        <div class="ww-section" id="comment">
+            <div class="container">
+                <div class="col text-center">
+                    <h2 class="h2 text-center pb-3 font-weight-bold">축하 메시지</h2>
+                    <div id="congrats-section">
+                        <form id="messageForm">
+                            <input type="text" id="guestName" placeholder="성함" required maxlength="50">
+                            <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요 :)" required maxlength="500"></textarea>
+                            <button type="submit">메시지 남기기</button>
+                        </form>
+                        <div id="messageList">
+                            <p class="message-empty">메시지를 불러오는 중입니다...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Floating Controls -->
+<div class="bottom_right" id="go-to-top">
+    <i class="fa fa-arrow-up"></i>
 </div>
-<footer></footer>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<div class="bottom_left" onclick="toggleAudio()">
+    <audio id="player" src="mus.mp3" loop></audio>
+    <i class="fa fa-music"></i>
+</div>
+
+<!-- Scripts (jQuery consolidated to v3.3.1) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="js/aos.js"></script>
@@ -285,16 +329,78 @@
 <script src="js/ekko-lightbox.min.js"></script>
 <script src="scripts/main.js"></script>
 
-<div class="bottom_right"><i class="fa fa-arrow-up fa-2x" id="go-to-top"></i>
-</div>
+<!-- Centralized Image & Data Configuration Script -->
+<script>
+  /* =========================================================
+   * [이미지 및 링크 일괄 변경 설정]
+   * 여기서 이미지 경로 및 지도 링크를 수정하면 전체 적용됩니다.
+   * ========================================================= */
+  const CONFIG = {
+    // 초대합니다 섹션 이미지
+    eventPhoto: "images/wedding-party.jpg",
 
-<div class="bottom_left">
-    <audio id="player" src="mus.mp3"></audio>
-    <div>
-        <i class="fa fa-music fa-2x" onclick="document.getElementById('player').play()"></i>
-    </div>
-</div>
+    // 갤러리 이미지 리스트 (필요한 만큼 추가/수정 가능)
+    gallery: [
+      "images/pic2.jpeg",
+      "images/pic3.jpeg",
+      "images/pic4.jpeg",
+      "images/pic6.jpeg",
+      "images/pic7.jpeg",
+      "images/pic5.jpeg"
+    ],
 
+    // 지도 버튼 아이콘 및 링크 설정
+    map: {
+      naverIcon: "images/map/naver-map.png",
+      naverUrl: "https://map.naver.com/p/entry/place/12159697",
+      kakaoIcon: "images/map/kakao-map.png",
+      kakaoUrl: "https://map.kakao.com/?q=BMK컨벤션",
+      googleIcon: "images/map/google-map.png",
+      googleUrl: "https://www.google.com/maps/search/?api=1&query=대전+중구+서문로+133+BMK컨벤션"
+    }
+  };
+
+  // 페이지 로드 시 설정 적용
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. 이벤트 이미지
+    document.getElementById("img-event").src = CONFIG.eventPhoto;
+
+    // 2. 갤러리 렌더링
+    const galleryContainer = document.getElementById("gallery-container");
+    galleryContainer.innerHTML = CONFIG.gallery.map((src, idx) => `
+      <div class="card">
+        <a href="${src}" data-gallery="ww-gallery" data-toggle="lightbox">
+          <img alt="Gallery Photo ${idx + 1}" class="img-fluid rounded" src="${src}"/>
+        </a>
+      </div>
+    `).join('');
+
+    // 3. 지도 아이콘 및 링크
+    document.getElementById("img-map-naver").src = CONFIG.map.naverIcon;
+    document.getElementById("link-naver").href = CONFIG.map.naverUrl;
+    document.getElementById("img-map-kakao").src = CONFIG.map.kakaoIcon;
+    document.getElementById("link-kakao").href = CONFIG.map.kakaoUrl;
+    document.getElementById("img-map-google").src = CONFIG.map.googleIcon;
+    document.getElementById("link-google").href = CONFIG.map.googleUrl;
+  });
+
+  // 오디오 재생 토글 함수
+  function toggleAudio() {
+    const audio = document.getElementById('player');
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
+  // 상단 이동 버튼
+  document.getElementById('go-to-top').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<!-- Firebase Firestore Module Script -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
@@ -315,7 +421,6 @@
   const db = getFirestore(app);
   const messagesRef = collection(db, "messages");
 
-  // 메시지 등록
   document.getElementById("messageForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const nameInput = document.getElementById("guestName");
@@ -345,14 +450,13 @@
     }
   });
 
-  // 메시지 실시간 표시 (최신순)
   const q = query(messagesRef, orderBy("createdAt", "desc"));
   onSnapshot(q, (snapshot) => {
     const list = document.getElementById("messageList");
     list.innerHTML = "";
 
     if (snapshot.empty) {
-      list.innerHTML = '<p class="message-empty">첫 번째 축하 메시지를 남겨주세요! 💐</p>';
+      list.innerHTML = '<p class="message-empty text-center">첫 번째 축하 메시지를 남겨주세요! 💐</p>';
       return;
     }
 
@@ -366,7 +470,7 @@
   }, (error) => {
     console.error("메시지 로딩 오류:", error);
     document.getElementById("messageList").innerHTML =
-      '<p class="message-empty">메시지를 불러오지 못했습니다.</p>';
+      '<p class="message-empty text-center">메시지를 불러오지 못했습니다.</p>';
   });
 
   function escapeHtml(text) {
@@ -375,6 +479,5 @@
     return div.innerHTML;
   }
 </script>
-
 </body>
 </html>
