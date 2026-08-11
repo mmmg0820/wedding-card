@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>11월 7일, 결혼합니다/title>
-<meta name="description" content="많은 관심으로 축하해주세요~!"/>
+<title>이재상과 권진경의 결혼식</title>
+<meta name="description" content="이재상과 권진경의 결혼식에 와서 축하해주세요~!"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,6 +150,11 @@
   .event-info i{ color: var(--accent); width:16px; text-align:center; }
 
   /* ---------- Gallery ---------- */
+  .gallery-wrap{
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
   .gallery-grid{
     display:grid;
     grid-template-columns: repeat(2, 1fr);
@@ -160,8 +165,35 @@
     aspect-ratio: 1/1;
     object-fit:cover;
     border-radius: var(--radius);
-    cursor:pointer;
     display:block;
+    filter: blur(14px);
+    transform: scale(1.05);
+    pointer-events: none;
+    user-select: none;
+  }
+  .gallery-overlay{
+    position: absolute;
+    inset: 0;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    background: rgba(255,255,255,0.25);
+    z-index: 5;
+  }
+  .gallery-overlay-icon{
+    font-size: 1.8rem;
+  }
+  .gallery-overlay-text{
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    background: rgba(255,255,255,0.85);
+    padding: 8px 18px;
+    border-radius: 999px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
 
   /* ---------- Map ---------- */
@@ -328,8 +360,14 @@
 
 <!-- Gallery -->
 <section class="section" id="gallery">
-  <h2 class="section-title">포토 갤러리</h2>
-  <div class="gallery-grid" id="gallery-container"></div>
+  <h2 class="section-title">우리의 시간들</h2>
+  <div class="gallery-wrap">
+    <div class="gallery-grid" id="gallery-container"></div>
+    <div class="gallery-overlay">
+      <span class="gallery-overlay-icon">🔨</span>
+      <span class="gallery-overlay-text">아직 뚝딱뚝딱중</span>
+    </div>
+  </div>
 </section>
 
 <!-- Map -->
@@ -395,7 +433,7 @@
 
     const galleryContainer = document.getElementById("gallery-container");
     galleryContainer.innerHTML = CONFIG.gallery.map((src, idx) => `
-      <img alt="Gallery Photo ${idx + 1}" src="${src}" onclick="window.open('${src}', '_blank')"/>
+      <img alt="Gallery Photo ${idx + 1}" src="${src}"/>
     `).join('');
 
     document.getElementById("img-map-naver").src = CONFIG.map.naverIcon;
