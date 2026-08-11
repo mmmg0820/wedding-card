@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>11월 7일, 결혼합니다.</title>
-<meta name="description" content="많은 관심과 축하 부탁드립니다~!"/>
+<title>11월 7일 결혼합니다.</title>
+<meta name="description" content="많은 관심으로 축하 해주세요 ~!"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,7 @@
 
   /* ---------- Hero ---------- */
   .hero{
+    position: relative;
     min-height: 100vh;
     display:flex;
     flex-direction:column;
@@ -56,11 +57,27 @@
     justify-content:center;
     text-align:center;
     padding: var(--gap-xl) var(--gap-lg);
+    background-image: url('images/main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  .hero::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.45) 100%);
+    z-index: 1;
+  }
+  .hero > *{
+    position: relative;
+    z-index: 2;
   }
   .hero-sub{
     font-size: 0.75rem;
     letter-spacing: 3px;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.85);
     text-transform: uppercase;
     margin-bottom: var(--gap-md);
   }
@@ -69,16 +86,17 @@
     font-weight: 300;
     letter-spacing: 4px;
     margin: 0 0 var(--gap-lg) 0;
+    color: #ffffff;
   }
   .hero-date{
     font-size: 0.95rem;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.85);
   }
   .hero-date b{
     display:block;
     font-size: 1.05rem;
     font-weight: 500;
-    color: var(--text);
+    color: #ffffff;
     margin-bottom: 4px;
   }
 
