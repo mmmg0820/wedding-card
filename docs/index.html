@@ -20,6 +20,51 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
+      /* Love Story Section */
+      .love-story-box {
+          max-width: 760px;
+          margin: 0 auto;
+          padding: 45px 28px;
+          border-radius: 28px;
+          background: rgba(255, 248, 246, 0.85);
+          box-shadow: 0 12px 35px rgba(245, 138, 119, 0.18);
+          border: 1px solid rgba(245, 138, 119, 0.18);
+      }
+
+      .love-story-text {
+          font-family: 'Gamja Flower', cursive;
+          font-size: 2.05rem;
+          line-height: 1.75;
+          color: #5b4742;
+          letter-spacing: -0.5px;
+          margin-bottom: 0;
+      }
+
+      .love-story-distance {
+          display: inline-block;
+          padding: 0 8px;
+          color: #f26147;
+          font-size: 2.45rem;
+          font-weight: 700;
+      }
+
+      @media (max-width: 576px) {
+          .love-story-box {
+              padding: 36px 20px;
+              border-radius: 22px;
+          }
+
+          .love-story-text {
+              font-size: 1.55rem;
+              line-height: 1.8;
+          }
+
+          .love-story-distance {
+              font-size: 1.9rem;
+          }
+      }
+
+      /* Congrats Message Section */
       #congrats-section { max-width: 500px; margin: 0 auto; padding: 20px; }
       #messageForm input, #messageForm textarea {
         width: 100%; padding: 10px; margin-bottom: 10px;
@@ -84,22 +129,21 @@
         </div>
         <div class="ww-section" id="couple">
             <div class="container">
-                <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">신랑 & 신부</h2>
-                <div class="row text-center">
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
-                                권진경</h3>
-                            <img alt="Groom" class="img-fluid" src="images/pic8.jpeg"/>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <h3 class="h2 ww-title" style="font-family: 'Sunflower', sans-serif; font-size:1.5em">
-                                이재상</h3>
-                            <img alt="Bride" class="img-fluid" src="images/pic9.jpeg"/>
-                        </div>
-                    </div>
+                <div class="text-center love-story-box">
+                    <h2 class="h1 pb-4 ww-title" style="font-family: 'Noto Serif KR', serif;">
+                        우리의 이야기
+                    </h2>
+
+                    <p class="love-story-text">
+                        3년 전, 폴란드와 한국<br class="d-sm-none">
+                        <span class="love-story-distance">8,130km</span>의 거리 앞에서<br>
+                        스쳐 갈 인연일 줄 알았던 두 사람의 처음.
+                    </p>
+
+                    <p class="love-story-text mt-4">
+                        끊임없이 사랑으로 거리를 좁힌 두 사람은<br>
+                        인생의 남은 거리를 함께 걷기로 하였습니다.
+                    </p>
                 </div>
             </div>
         </div>
