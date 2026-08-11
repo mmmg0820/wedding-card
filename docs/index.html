@@ -18,6 +18,30 @@
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.1.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+      #congrats-section { max-width: 500px; margin: 0 auto; padding: 20px; }
+      #messageForm input, #messageForm textarea {
+        width: 100%; padding: 10px; margin-bottom: 10px;
+        border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;
+        font-family: 'Noto Serif KR', serif;
+      }
+      #messageForm textarea { resize: vertical; min-height: 80px; }
+      #messageForm button {
+        width: 100%; padding: 12px; background: #d8a48f;
+        color: white; border: none; border-radius: 8px; cursor: pointer;
+        font-family: 'Noto Serif KR', serif; font-size: 1em;
+      }
+      #messageForm button:hover { background: #c88f78; }
+      #messageList { margin-top: 20px; text-align: left; }
+      .message-item {
+        background: #fdf6f0; padding: 12px 16px; margin-bottom: 10px;
+        border-radius: 10px;
+      }
+      .message-item strong { color: #a06843; font-family: 'Noto Serif KR', serif; }
+      .message-item p { margin: 6px 0 0 0; word-break: break-word; }
+      .message-empty { color: #999; padding: 10px 0; }
+    </style>
 </head>
 
 <body id="top">
@@ -189,14 +213,16 @@
                     <div class="col text-center">
                         <h2 class="h1 text-center pb-3 ww-title" style="font-family: 'Noto Serif KR', serif;">축하메시지</h2><br>
 
-                        <div id="cusdis_thread"
-                             data-host="https://cusdis.com"
-                             data-app-id="4e4894ee-01f7-4eae-94ae-1794256cc0e0"
-                             data-page-id="jaesang-jinkyung-wedding"
-                             data-page-url="https://mmmg0820.github.io/wedding-card/"
-                             data-page-title="이재상 & 권진경 결혼식 축하메시지">
+                        <div id="congrats-section">
+                            <form id="messageForm">
+                                <input type="text" id="guestName" placeholder="이름" required maxlength="50">
+                                <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요 :)" required maxlength="500"></textarea>
+                                <button type="submit">메시지 남기기</button>
+                            </form>
+                            <div id="messageList">
+                                <p class="message-empty">메시지를 불러오는 중입니다...</p>
+                            </div>
                         </div>
-                        <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
                     </div>
                 </div>
@@ -224,6 +250,87 @@
         <i class="fa fa-music fa-2x" onclick="document.getElementById('player').play()"></i>
     </div>
 </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, collection, addDoc,
+    query, orderBy, onSnapshot, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDpKI8drR3FBa8yuk8YrVoWLbJwqCdeQUs",
+    authDomain: "wedding-card-915f0.firebaseapp.com",
+    projectId: "wedding-card-915f0",
+    storageBucket: "wedding-card-915f0.firebasestorage.app",
+    messagingSenderId: "125344795647",
+    appId: "1:125344795647:web:1d882c670d235f07eb35ca"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const messagesRef = collection(db, "messages");
+
+  // 메시지 등록
+  document.getElementById("messageForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const nameInput = document.getElementById("guestName");
+    const messageInput = document.getElementById("guestMessage");
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+    if (!name || !message) return;
+
+    const submitBtn = e.target.querySelector("button");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "등록 중...";
+
+    try {
+      await addDoc(messagesRef, {
+        name,
+        message,
+        createdAt: serverTimestamp()
+      });
+      nameInput.value = "";
+      messageInput.value = "";
+    } catch (err) {
+      alert("메시지 등록에 실패했습니다. 다시 시도해주세요.");
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "메시지 남기기";
+    }
+  });
+
+  // 메시지 실시간 표시 (최신순)
+  const q = query(messagesRef, orderBy("createdAt", "desc"));
+  onSnapshot(q, (snapshot) => {
+    const list = document.getElementById("messageList");
+    list.innerHTML = "";
+
+    if (snapshot.empty) {
+      list.innerHTML = '<p class="message-empty">첫 번째 축하 메시지를 남겨주세요! 💐</p>';
+      return;
+    }
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const item = document.createElement("div");
+      item.className = "message-item";
+      item.innerHTML = `<strong>${escapeHtml(data.name)}</strong><p>${escapeHtml(data.message)}</p>`;
+      list.appendChild(item);
+    });
+  }, (error) => {
+    console.error("메시지 로딩 오류:", error);
+    document.getElementById("messageList").innerHTML =
+      '<p class="message-empty">메시지를 불러오지 못했습니다.</p>';
+  });
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+</script>
 
 </body>
 </html>
