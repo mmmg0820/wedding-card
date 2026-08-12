@@ -412,6 +412,12 @@
     border-bottom: 1px solid var(--line);
   }
   .message-item:last-child{ border-bottom:none; }
+  .message-item-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+  }
   .message-item strong{
     font-size:0.85rem;
     color: var(--text);
@@ -424,6 +430,18 @@
     line-height:1.6;
     font-family: 'Noto Sans KR', sans-serif;
   }
+  .message-delete-btn{
+    flex-shrink:0;
+    border:none;
+    background:none;
+    color: var(--text-muted);
+    font-size:0.78rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor:pointer;
+    padding:4px 6px;
+    text-decoration:underline;
+  }
+  .message-delete-btn:hover{ color: var(--accent); }
   .message-empty{
     text-align:center;
     color: var(--text-muted);
@@ -554,6 +572,7 @@
   <form id="messageForm">
     <input type="text" id="guestName" placeholder="성함" required maxlength="50">
     <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요 :)" required maxlength="500"></textarea>
+    <input type="password" id="guestPassword" placeholder="삭제 시 사용할 비밀번호 (4자 이상)" required minlength="4" maxlength="20">
     <button type="submit">메시지 남기기</button>
   </form>
   <div id="messageList">
@@ -584,7 +603,7 @@
     ],
     map: {
       naverIcon: "images/map/naver-map.png",
-      naverUrl: "https://map.naver.com/p/entry/place/12159697",
+      naverUrl: "https://map.naver.com/p/search/BMK%EC%9B%A8%EB%94%A9%ED%99%80?c=15.00,0,0,0,dh",
       kakaoIcon: "images/map/kakao-map.png",
       kakaoUrl: "https://map.kakao.com/?q=BMK컨벤션",
       googleIcon: "images/map/google-map.png",
@@ -593,13 +612,12 @@
     accounts: {
       groom: [
         { relation: "신랑", name: "이재상", bank: "국민은행", number: "123456-78-901234" },
-        { relation: "신랑 아버지", name: "이OO", bank: "신한은행", number: "110-123-456789" },
-        { relation: "신랑 어머니", name: "김OO", bank: "우리은행", number: "1002-123-456789" }
+        { relation: "신랑 아버지", name: "이우수", bank: "신한은행", number: "110-123-456789" },
+        { relation: "신랑 어머니", name: "이은미", bank: "우리은행", number: "1002-123-456789" }
       ],
       bride: [
-        { relation: "신부", name: "권진경", bank: "카카오뱅크", number: "3333-01-1234567" },
-        { relation: "신부 아버지", name: "권OO", bank: "농협은행", number: "123-4567-8901-23" },
-        { relation: "신부 어머니", name: "박OO", bank: "하나은행", number: "111-222222-33333" }
+        { relation: "신부", name: "권진경", bank: "NH농협은행", number: "302-4384-5166-71" },
+        { relation: "신부 어머니", name: "이선아", bank: "NH농협은행", number: "417-02-083691" }
       ]
     }
   };
@@ -708,38 +726,54 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import {
     getFirestore, collection, addDoc,
-    query, orderBy, onSnapshot, serverTimestamp
+    query, orderBy, onSnapshot, serverTimestamp,
+    doc, getDoc, deleteDoc
   } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDpKI8drR3FBa8yuk8YrVoWLbJwqCdeQUs",
-    authDomain: "wedding-card-915f0.firebaseapp.com",
-    projectId: "wedding-card-915f0",
-    storageBucket: "wedding-card-915f0.firebasestorage.app",
-    messagingSenderId: "125344795647",
-    appId: "1:125344795647:web:1d882c670d235f07eb35ca"
+const firebaseConfig = {
+  apiKey: "AIzaSyA4C_proYbJhWij2CxixCAOPWOGQ-8LS0g",
+  authDomain: "wedding-card-mmmg.firebaseapp.com",
+  projectId: "wedding-card-mmmg",
+  storageBucket: "wedding-card-mmmg.firebasestorage.app",
+  messagingSenderId: "617300265440",
+  appId: "1:617300265440:web:044d80b4d8d91457950385",
+  measurementId: "G-FGX9WE05E4"
   };
+
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const messagesRef = collection(db, "messages");
 
+  // 비밀번호 필드 없이 등록된 기존 메시지는 비밀번호 "0000"으로 취급한다.
+  const DEFAULT_PASSWORD_HASH = "9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0";
+
+  async function hashPassword(password) {
+    const buffer = new TextEncoder().encode(password);
+    const digest = await crypto.subtle.digest("SHA-256", buffer);
+    return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, "0")).join("");
+  }
+
   document.getElementById("messageForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const nameInput = document.getElementById("guestName");
     const messageInput = document.getElementById("guestMessage");
+    const passwordInput = document.getElementById("guestPassword");
     const name = nameInput.value.trim();
     const message = messageInput.value.trim();
-    if (!name || !message) return;
+    const password = passwordInput.value.trim();
+    if (!name || !message || !password) return;
 
     const submitBtn = e.target.querySelector("button");
     submitBtn.disabled = true;
     submitBtn.textContent = "등록 중...";
 
     try {
-      await addDoc(messagesRef, { name, message, createdAt: serverTimestamp() });
+      const passwordHash = await hashPassword(password);
+      await addDoc(messagesRef, { name, message, passwordHash, createdAt: serverTimestamp() });
       nameInput.value = "";
       messageInput.value = "";
+      passwordInput.value = "";
     } catch (err) {
       alert("메시지 등록에 실패했습니다. 다시 시도해주세요.");
       console.error(err);
@@ -759,18 +793,52 @@
       return;
     }
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
+    snapshot.forEach((docSnap) => {
+      const data = docSnap.data();
       const item = document.createElement("div");
       item.className = "message-item";
-      item.innerHTML = `<strong>${escapeHtml(data.name)}</strong><p>${escapeHtml(data.message)}</p>`;
+      item.innerHTML = `
+        <div class="message-item-header">
+          <strong>${escapeHtml(data.name)}</strong>
+          <button type="button" class="message-delete-btn" data-id="${docSnap.id}">삭제</button>
+        </div>
+        <p>${escapeHtml(data.message)}</p>
+      `;
       list.appendChild(item);
+    });
+
+    list.querySelectorAll(".message-delete-btn").forEach((btn) => {
+      btn.addEventListener("click", () => deleteMessage(btn.dataset.id));
     });
   }, (error) => {
     console.error("메시지 로딩 오류:", error);
     document.getElementById("messageList").innerHTML =
       '<p class="message-empty">메시지를 불러오지 못했습니다.</p>';
   });
+
+  async function deleteMessage(id) {
+    const password = prompt("메시지 등록 시 입력한 비밀번호를 입력해주세요.");
+    if (password === null) return;
+
+    try {
+      const snap = await getDoc(doc(db, "messages", id));
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+      const expectedHash = data.passwordHash || DEFAULT_PASSWORD_HASH;
+      const inputHash = await hashPassword(password.trim());
+
+      if (inputHash !== expectedHash) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+      }
+
+      await deleteDoc(doc(db, "messages", id));
+    } catch (err) {
+      alert("메시지 삭제에 실패했습니다. 다시 시도해주세요.");
+      console.error(err);
+    }
+  }
 
   function escapeHtml(text) {
     const div = document.createElement("div");
