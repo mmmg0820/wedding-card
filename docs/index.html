@@ -753,8 +753,6 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const messagesRef = collection(db, "messages");
-
-  // 비밀번호 필드 없이 등록된 기존 메시지는 비밀번호 "0000"으로 취급한다.
   const DEFAULT_PASSWORD_HASH = "9af15b336e6a9619928537df30b2e6a2376569fcf9d7e773eccede65606529a0";
 
   async function hashPassword(password) {
