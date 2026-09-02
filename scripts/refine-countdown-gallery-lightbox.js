@@ -22,24 +22,7 @@ let html = zlib.gunzipSync(Buffer.concat([decipher.update(encrypted.subarray(56)
 
 const refinementCss = `
 
-  /* ---------- compact countdown and lightbox gestures ---------- */
-  #events .countdown{
-    width:100%;
-    grid-template-columns:repeat(4, minmax(0,64px));
-    justify-content:center;
-    gap:6px;
-  }
-  #events .countdown-unit{
-    min-height:76px;
-    padding:9px 2px 8px;
-    border-radius:8px;
-  }
-  #events .countdown-value{ min-height:28px; }
-  #events .countdown-label{
-    margin-top:0;
-    font-size:.52rem;
-    letter-spacing:.25px;
-  }
+  /* ---------- lightbox gestures ---------- */
   @keyframes lightboxFadeIn{
     from{ opacity:0; }
     to{ opacity:1; }
@@ -134,7 +117,7 @@ html = replaceOnce(
   'gallery image keyboard handler',
 );
 
-for (const marker of ['grid-template-columns:repeat(4, minmax(0,64px))', 'addEventListener("dblclick"', 'addEventListener("touchend"', 'showGalleryPhoto(galleryLightboxIndex +']) {
+for (const marker of ['addEventListener("dblclick"', 'addEventListener("touchend"', 'showGalleryPhoto(galleryLightboxIndex +']) {
   if (!html.includes(marker)) throw new Error(`lightbox/countdown refinement missing: ${marker}`);
 }
 
