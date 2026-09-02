@@ -96,6 +96,7 @@ python3 -m http.server 8000 --directory docs
 
 - 320px 안팎의 작은 모바일 화면에서 가로 넘침이 없는지
 - 상단 메뉴가 올바른 섹션으로 이동하는지
+- 모바일에서 서로 다른 섹션 메뉴를 연속으로 여러 번 눌러도 매번 이동하는지
 - 카운트다운 숫자가 매초 갱신되는지
 - 갤러리 확대·닫기·스와이프가 동작하는지
 - 지도 앱 버튼이 모바일에서 앱 실행을 시도하는지
@@ -142,7 +143,9 @@ node scripts/replace-v3-gallery-photos.js \
 | 계좌 | `make-account-panels-exclusive.js` | 신랑·신부 측 패널 중복 열림 방지 |
 | 가족 소개 | `update-bride-father-name.js`, `style-family-lines.js`, `remove-chrysanthemum-spacing.js` | 고인 표기와 이름·정렬·간격 수정 |
 | 공통 정리 | `apply-common-v2-cleanup.js` | 메뉴 이동 수정, 워터마크와 링크 복사 영역 제거 |
-| 애니메이션 | `add-dubai-style-animations.js` | 스크롤 진입, 메인 사진 및 달력 애니메이션 |
+| 모바일 메뉴 | `fix-repeated-mobile-navigation.js` | 연속 터치 시 진행 중인 스크롤을 갱신하고 고정 메뉴 높이 보정 |
+| 애니메이션 | `add-scroll-animations.js` | 스크롤 진입, 메인 사진 및 달력 애니메이션 |
+| 명칭 정리 | `normalize-animation-label.js` | 암호화 본문에 남은 애니메이션 섹션 명칭을 중립적으로 정리 |
 | 달력·카운트다운 | `add-v3-date-calendar.js`, `apply-v3-visual-feedback.js`, `apply-v3-calendar-color-feedback.js`, `apply-v3-date-timer-feedback.js`, `restore-original-countdown-layout.js` | WEDDING DAY 달력과 시계 생성 및 피드백 반영 |
 | 섹션 구성 | `reorder-v3-wedding-day.js`, `apply-v3-story-gallery-feedback.js` | 이야기·달력·예식장 사진 순서와 문구 정리 |
 | 갤러리 | `replace-v3-gallery-photos.js`, `add-gallery-lightbox.js`, `apply-parking-gallery-grid-feedback.js`, `refine-countdown-gallery-lightbox.js`, `limit-gallery-lightbox-size.js` | 사진 교체, 3열 썸네일, 확대·닫기·스와이프와 80% 크기 제한 |
@@ -167,22 +170,23 @@ git status --short
 | `v1` | 최초 자동 열림 버전 보존 |
 | `v2` | QA 수정과 공통 메뉴·화면 정리 버전 보존 |
 | `v3` | 달력, 애니메이션, 새 갤러리와 최신 UX 변경 작업 브랜치 |
+| `v4` | 전체 파일 검토와 명칭 정리를 마친 최신 배포 후보 브랜치 |
 | `master` | GitHub Pages에 반영하는 배포 기준 브랜치 |
 
 일반적인 반영 흐름은 다음과 같습니다.
 
 ```bash
-git switch v3
+git switch v4
 git add <변경 파일>
 git commit -m "변경 내용"
-git push origin v3
+git push origin v4
 
 git switch master
-git merge --ff-only v3
+git merge --ff-only v4
 git push origin master
 ```
 
-`--ff-only`를 사용하면 master에 예상하지 못한 별도 커밋이 있을 때 병합을 중단하므로 기존 배포 이력을 덮어쓰는 실수를 줄일 수 있습니다. 병합 전에는 `git fetch origin`과 `git merge-base --is-ancestor origin/master v3`로 fast-forward 가능 여부를 확인합니다.
+`--ff-only`를 사용하면 master에 예상하지 못한 별도 커밋이 있을 때 병합을 중단하므로 기존 배포 이력을 덮어쓰는 실수를 줄일 수 있습니다. 병합 전에는 `git fetch origin`과 `git merge-base --is-ancestor origin/master v4`로 fast-forward 가능 여부를 확인합니다.
 
 ## 배포 및 보안 메모
 

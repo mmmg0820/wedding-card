@@ -22,7 +22,7 @@ let html = zlib.gunzipSync(Buffer.concat([decipher.update(encrypted.subarray(56)
 
 const animationCss = `
 
-  /* ---------- Motion inspired by the Dubai reference ---------- */
+  /* ---------- Scroll and entrance motion ---------- */
   html{ scroll-behavior:smooth; }
   body{ overflow-x:hidden; }
 
@@ -205,4 +205,4 @@ const header = Buffer.alloc(12);
 header.write('WEDLOCK1');
 header.writeUInt32BE(iterations, 8);
 fs.writeFileSync(invitationPath, Buffer.concat([header, salt, iv, cipher.getAuthTag(), ciphertext]));
-console.log('Added lightweight Dubai-style motion effects.');
+console.log('Added lightweight scroll and entrance motion effects.');
