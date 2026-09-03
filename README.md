@@ -10,13 +10,14 @@ GitHub Pages에서 정적 호스팅하는 모바일 우선 청첩장입니다. �
 2. 상단 섹션 메뉴
 3. 우리의 이야기와 양가 가족 소개
 4. `WEDDING DAY` 달력 및 실시간 카운트다운
-5. 예식장 사진
-6. 우리의 시간들 갤러리
-7. 오시는 길
-8. 마음 전하실 곳
-9. 축하 메시지
+5. 우리의 시간들 갤러리
+6. 오시는 길
+7. 마음 전하실 곳
+8. 축하 메시지
 
 상단 메뉴는 `Home`, `Story`, `Wedding Day`, `Gallery`, `Location` 순서이며, 메뉴를 누르면 외부 페이지로 이동하지 않고 해당 섹션으로 부드럽게 스크롤합니다. 갤러리를 비활성화하면 갤러리 본문과 상단 메뉴가 함께 숨겨집니다.
+
+WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정으로 숨겨져 있습니다. 사진 데이터는 보존되어 있어 필요할 때 설정을 `"ON"`으로 바꾸면 다시 표시할 수 있습니다.
 
 ## 주요 기능
 
@@ -34,7 +35,7 @@ GitHub Pages에서 정적 호스팅하는 모바일 우선 청첩장입니다. �
 - 사진을 누르면 현재 화면의 최대 80% 크기로 확대
 - 확대 시 원본 비율 유지 및 가벼운 페이드·스케일 애니메이션 적용
 - `×` 버튼, 바깥 배경, 사진 더블 클릭, `Esc` 키로 닫기
-- 모바일 좌우 스와이프 및 PC 방향키로 이전·다음 사진 이동
+- 화면의 이전·다음 버튼, 모바일 좌우 스와이프 및 PC 방향키로 사진 이동
 - 갤러리 이미지의 EXIF 위치·기기 정보 제거
 
 ### 오시는 길
@@ -148,7 +149,8 @@ node scripts/replace-v3-gallery-photos.js \
 | 명칭 정리 | `normalize-animation-label.js` | 암호화 본문에 남은 애니메이션 섹션 명칭을 중립적으로 정리 |
 | 달력·카운트다운 | `add-v3-date-calendar.js`, `apply-v3-visual-feedback.js`, `apply-v3-calendar-color-feedback.js`, `apply-v3-date-timer-feedback.js`, `restore-original-countdown-layout.js` | WEDDING DAY 달력과 시계 생성 및 피드백 반영 |
 | 섹션 구성 | `reorder-v3-wedding-day.js`, `apply-v3-story-gallery-feedback.js` | 이야기·달력·예식장 사진 순서와 문구 정리 |
-| 갤러리 | `replace-v3-gallery-photos.js`, `add-gallery-lightbox.js`, `apply-parking-gallery-grid-feedback.js`, `refine-countdown-gallery-lightbox.js`, `limit-gallery-lightbox-size.js` | 사진 교체, 3열 썸네일, 확대·닫기·스와이프와 80% 크기 제한 |
+| 예식장 사진 | `disable-event-photo.js` | WEDDING DAY 아래 사진을 설정값으로 표시·숨김 |
+| 갤러리 | `replace-v3-gallery-photos.js`, `add-gallery-lightbox.js`, `apply-parking-gallery-grid-feedback.js`, `refine-countdown-gallery-lightbox.js`, `limit-gallery-lightbox-size.js`, `add-gallery-navigation-buttons.js` | 사진 교체, 3열 썸네일, 확대·닫기·스와이프·이동 버튼과 80% 크기 제한 |
 | 오시는 길 | `reorder-map-directions.js`, `update-v3-venue-parking-copy.js` | 지도·앱·예식장·교통 안내 순서와 문구 변경 |
 
 ## 검증
