@@ -49,9 +49,6 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
   - 구글지도
 - 모바일에서 각 앱의 딥링크 실행을 우선 시도하고, 실행할 수 없으면 웹 주소로 전환
 - 예식장명·주소와 자동차·지하철·기차·버스 안내 제공
-- 셔틀버스 안내 제공
-  - 탑승 위치: 노원역 8번 출구
-  - 탑승 시간: 예식일 오전 10시 30분
 
 ### 계좌 및 축하 메시지
 
@@ -82,7 +79,7 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 └── scripts/                       # 암호화 본문에 변경을 적용한 이력형 Node.js 스크립트
 ```
 
-`docs/index.html`은 `docs/assets/invitation.enc`를 가져와 브라우저 Web Crypto API로 복호화하고, gzip을 해제한 뒤 `iframe.srcdoc`으로 표시합니다. 자동 열림 모드에서는 별도 로딩 카드를 표시하지 않습니다. 배포 저장소에 평문 청첩장 HTML은 두지 않습니다.
+`docs/index.html`은 `docs/assets/invitation.enc`를 가져와 브라우저 Web Crypto API로 복호화하고, gzip을 해제한 뒤 `iframe.srcdoc`으로 표시합니다. 배포 저장소에 평문 청첩장 HTML은 두지 않습니다.
 
 > 암호화는 소스의 단순 노출을 줄이기 위한 배포 구조입니다. 브라우저가 최종 화면을 표시해야 하므로 DRM이나 완전한 접근 통제를 제공하는 방식은 아닙니다.
 
