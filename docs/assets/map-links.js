@@ -25,6 +25,13 @@
         app: google,
         package: 'com.google.android.apps.maps',
         web: google
+      },
+      tmap: {
+        app: `tmap://route?goalname=${label}&goalx=${lng}&goaly=${lat}&reqCoordType=WGS84&resCoordType=WGS84`,
+        iosApp: `tmap://route?rGoName=${label}&rGoX=${lng}&rGoY=${lat}`,
+        package: 'com.skt.tmap.ku',
+        web: 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku',
+        iosFallback: 'https://apps.apple.com/kr/app/id431589174'
       }
     };
     return links[service] || null;
@@ -54,9 +61,9 @@
       window.addEventListener('pagehide', cleanup);
       timer = setTimeout(() => {
         cleanup();
-        window.top.location.href = target.web;
+        window.top.location.href = target.iosFallback || target.web;
       }, 1800);
-      window.top.location.href = target.app;
+      window.top.location.href = target.iosApp || target.app;
     } else {
       window.open(target.web, '_blank', 'noopener,noreferrer');
     }

@@ -13,7 +13,7 @@ function runtime(userAgent) {
   return { window, document, events, opened, timers };
 }
 const guide = fs.readFileSync('docs/etc.html', 'utf8');
-assert(guide.includes('assets/map-links.js?v=20261002'));
+assert(guide.includes('assets/map-links.js?v=20261002-tmap'));
 assert.equal((guide.match(/data-map-service=/g) || []).length, places.length * 3);
 for (const place of [...places, { name: 'BMK웨딩홀', address: '대전 중구 서문로 133', lat: 36.3198898, lng: 127.4051471 }]) {
   for (const service of ['naver', 'kakaomap', 'google']) {
@@ -60,3 +60,33 @@ tap.events.click({ target: { closest: () => ({ dataset: { mapService: 'kakaomap'
 assert(prevented);
 assert(tap.window.top.location.href.startsWith('intent://look?'));
 console.log('PASS: venue + 17 places, three services, Android/iOS/desktop targets, missing-app fallbacks and guide click delegation.');
+const venue = { name: 'BMK웨딩홀', lat: 36.3198898, lng: 127.4051471 };
+const tmapAndroid = runtime('Android Chrome');
+tmapAndroid.window.WeddingMaps.open('tmap', venue);
+const tmapIntent = tmapAndroid.window.top.location.href;
+assert(tmapIntent.startsWith('intent://route?'));
+assert(tmapIntent.includes(';scheme=tmap;'));
+assert(tmapIntent.includes(';package=com.skt.tmap.ku;'));
+const androidParams = new URL(tmapIntent.split('#Intent;')[0].replace('intent://', 'https://')).searchParams;
+assert.equal(androidParams.get('goalname'), venue.name);
+assert.equal(androidParams.get('goalx'), String(venue.lng));
+assert.equal(androidParams.get('goaly'), String(venue.lat));
+const storeFallback = decodeURIComponent(tmapIntent.match(/S.browser_fallback_url=([^;]+)/)[1]);
+assert.equal(storeFallback, 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku');
+const tmapIos = runtime('iPhone Safari');
+tmapIos.window.WeddingMaps.open('tmap', venue);
+const iosParams = new URL(tmapIos.window.top.location.href).searchParams;
+assert.equal(iosParams.get('rGoName'), venue.name);
+assert.equal(iosParams.get('rGoX'), String(venue.lng));
+assert.equal(iosParams.get('rGoY'), String(venue.lat));
+tmapIos.timers.get(1)();
+assert.equal(tmapIos.window.top.location.href, 'https://apps.apple.com/kr/app/id431589174');
+const tmapOpened = runtime('iPhone Safari');
+tmapOpened.window.WeddingMaps.open('tmap', venue);
+tmapOpened.document.hidden = true;
+tmapOpened.events.visibilitychange();
+assert.equal(tmapOpened.timers.size, 0);
+const tmapDesktop = runtime('Macintosh Chrome');
+tmapDesktop.window.WeddingMaps.open('tmap', venue);
+assert.equal(tmapDesktop.opened[0], storeFallback);
+console.log('PASS: TMAP venue route parameters, Android package, iOS scheme, installed/missing-app handling and desktop installation link.');
