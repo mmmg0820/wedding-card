@@ -14,6 +14,9 @@ html = html.replace(/<li><h3>([^<]+)<\/h3>[\s\S]*?<\/li>/g, (item, name) => {
   if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lng)) {
     throw new Error(`Missing coordinates for ${name}`);
   }
+  if (!Number.isInteger(place.parkingStars) || place.parkingStars < 1 || place.parkingStars > 5 || !place.note) {
+    throw new Error(`Missing note or parking rating for ${name}`);
+  }
   const { lat, lng } = place;
   const links = [
     ['네이버지도', 'https://map.naver.com/p/?' + new URLSearchParams({ title: name, lng, lat, zoom: 16, type: 0 })],
@@ -25,10 +28,9 @@ html = html.replace(/<li><h3>([^<]+)<\/h3>[\s\S]*?<\/li>/g, (item, name) => {
   ).join('');
   if (!item.includes('class="local-guide-address"')) throw new Error(`Missing address for ${name}`);
   updated++;
-  return item.replace(/<p class="local-guide-address">[\s\S]*?<\/li>/,
-    `<p class="local-guide-address">${escapeHtml(place.address)}</p><div class="local-guide-map-links">${buttons}</div></li>`);
+  return `<li><h3>${escapeHtml(name)}</h3><p class="local-guide-note">${escapeHtml(place.note)}</p><p class="local-guide-address">${escapeHtml(place.address)}</p><p class="local-guide-parking">주차 난이도 : <span role="img" aria-label="별 ${place.parkingStars}개, 5개 만점">${'⭐'.repeat(place.parkingStars)}</span></p><div class="local-guide-map-links">${buttons}</div></li>`;
 });
-if (updated !== 14 || places.length !== updated) throw new Error('Expected exactly 14 places.');
+if (updated !== places.length) throw new Error('Place list does not match the data.');
 if (!html.includes('.local-guide-map-links{')) {
   html = html.replace('  .local-guide-group summary:focus-visible',
     `  .local-guide-map-links{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin-top:12px; }
@@ -36,6 +38,6 @@ if (!html.includes('.local-guide-map-links{')) {
   .local-guide-map-links a:hover{ background:white; border-color:var(--accent); }
   .local-guide-group summary:focus-visible`);
 }
-if ((html.match(/class="local-guide-map-links"/g) || []).length !== 14) throw new Error('Incomplete map buttons.');
+if ((html.match(/class="local-guide-map-links"/g) || []).length !== places.length) throw new Error('Incomplete map buttons.');
 fs.writeFileSync(guidePath, html);
-console.log('Updated 14 places with coordinate-based Naver, Kakao and Google Maps links.');
+console.log(`Updated ${updated} places with notes, parking ratings and three map links each.`);

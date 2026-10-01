@@ -6,7 +6,9 @@
     "lng": 127.4152368,
     "googlePlaceId": "ChIJ2RIgtVdPZTURGXUotfDi7Jo",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EC%8B%A0%EB%8F%99%EB%AA%85%EC%9D%98+%EC%BB%A4%ED%94%BC%EA%B3%B5%EA%B0%84+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%BC%EB%A1%80%EB%A1%9C+94&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EC%8B%A0%EB%8F%99%EB%AA%85%EC%9D%98+%EC%BB%A4%ED%94%BC%EA%B3%B5%EA%B0%84+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%BC%EB%A1%80%EB%A1%9C+94&output=embed&hl=ko",
+    "parkingStars": 4,
+    "note": "집으로 가는 길에 필요한 맛있는 커피. 원두를 선택할 수 있어요."
   },
   {
     "name": "다다제과점",
@@ -15,7 +17,9 @@
     "lng": 127.4211942,
     "googlePlaceId": "ChIJbZbAEQBJZTURynN1uB_TndA",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EB%8B%A4%EB%8B%A4%EC%A0%9C%EA%B3%BC%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+11&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EB%8B%A4%EB%8B%A4%EC%A0%9C%EA%B3%BC%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+11&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "샌드베이글 맛집"
   },
   {
     "name": "굿베이글",
@@ -24,7 +28,9 @@
     "lng": 127.4141478,
     "googlePlaceId": "ChIJxQ7gCJZPZTURYDH_ZbzwdSw",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EA%B5%BF%EB%B2%A0%EC%9D%B4%EA%B8%80+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%BC%EB%A1%80%EB%A1%9C+74-29&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EA%B5%BF%EB%B2%A0%EC%9D%B4%EA%B8%80+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%BC%EB%A1%80%EB%A1%9C+74-29&output=embed&hl=ko",
+    "parkingStars": 4,
+    "note": "베이글 맛집"
   },
   {
     "name": "성심당 롯데백화점 대전점",
@@ -33,7 +39,21 @@
     "lng": 127.3901764,
     "googlePlaceId": "ChIJeUonRlpJZTURJdHXz9M7l1s",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EC%84%B1%EC%8B%AC%EB%8B%B9+%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90+%EB%8C%80%EC%A0%84%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%84%9C%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C+598&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EC%84%B1%EC%8B%AC%EB%8B%B9+%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90+%EB%8C%80%EC%A0%84%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%84%9C%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C+598&output=embed&hl=ko",
+    "parkingStars": 5,
+    "note": "성심당 DCC점은 와인엑스포로 인해 과포화 예정이니 자동차로 이동하시는 분들은 롯데백화점 성심당으로 이용하시는 것을 권장드립니다"
+  },
+  {
+    "name": "성심당 본점",
+    "address": "대전 중구 대종로480번길 15",
+    "lat": 36.3276832,
+    "lng": 127.4273424,
+    "googlePlaceId": "ChIJXTU999hIZTURyl7JAtkw6Wk",
+    "verifiedAt": "2026-10-01",
+    "source": "https://www.google.com/maps?q=%EC%84%B1%EC%8B%AC%EB%8B%B9+%EB%B3%B8%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EB%8C%80%EC%A2%85%EB%A1%9C480%EB%B2%88%EA%B8%B8+15&output=embed&hl=ko",
+    "addressSource": "https://sungsimdang.co.kr/31/15",
+    "parkingStars": 2,
+    "note": "대전에서 들러보시길 추천하는 성심당 본점"
   },
   {
     "name": "평생직장커피",
@@ -42,7 +62,9 @@
     "lng": 127.4074591,
     "googlePlaceId": "ChIJxwyK_UBPZTURnV6m2tOkvCo",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%ED%8F%89%EC%83%9D%EC%A7%81%EC%9E%A5%EC%BB%A4%ED%94%BC+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C874%EB%B2%88%EA%B8%B8+71&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%ED%8F%89%EC%83%9D%EC%A7%81%EC%9E%A5%EC%BB%A4%ED%94%BC+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C874%EB%B2%88%EA%B8%B8+71&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "분위기 좋은 카페"
   },
   {
     "name": "넛팅",
@@ -51,7 +73,9 @@
     "lng": 127.4040039,
     "googlePlaceId": "ChIJk38YYrVOZTUR2Jj-aDblFiQ",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EB%84%9B%ED%8C%85+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%98%A4%EB%A5%98%EB%A1%9C+31&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EB%84%9B%ED%8C%85+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%98%A4%EB%A5%98%EB%A1%9C+31&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "깔끔한 카페"
   },
   {
     "name": "카페코지",
@@ -60,7 +84,9 @@
     "lng": 127.4062006,
     "googlePlaceId": "ChIJWauxsOVPZTUR28LZa9gcNyU",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EC%B9%B4%ED%8E%98%EC%BD%94%EC%A7%80+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C882%EB%B2%88%EA%B8%B8+106&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EC%B9%B4%ED%8E%98%EC%BD%94%EC%A7%80+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EA%B3%84%EB%A3%A1%EB%A1%9C882%EB%B2%88%EA%B8%B8+106&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "분위기 좋은 카페"
   },
   {
     "name": "로로네베이커리",
@@ -69,7 +95,9 @@
     "lng": 127.423272,
     "googlePlaceId": "ChIJIx2nU8JJZTUR4QPKK_85-RE",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EB%A1%9C%EB%A1%9C%EB%84%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+30&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EB%A1%9C%EB%A1%9C%EB%84%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+30&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "빵과 커피 한 잔"
   },
   {
     "name": "하이드아웃",
@@ -78,7 +106,9 @@
     "lng": 127.4251327,
     "googlePlaceId": "ChIJUzj_JShJZTURGGOgKGKfqLQ",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%ED%95%98%EC%9D%B4%EB%93%9C%EC%95%84%EC%9B%83+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EB%8C%80%ED%9D%A5%EB%A1%9C121%EB%B2%88%EA%B8%B8+17&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%ED%95%98%EC%9D%B4%EB%93%9C%EC%95%84%EC%9B%83+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EB%8C%80%ED%9D%A5%EB%A1%9C121%EB%B2%88%EA%B8%B8+17&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "케이크와 커피 한 잔"
   },
   {
     "name": "땡큐베리머치",
@@ -87,7 +117,9 @@
     "lng": 127.4251667,
     "googlePlaceId": "ChIJH6vcAChJZTURTAHFrocH5kg",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EB%95%A1%ED%81%90%EB%B2%A0%EB%A6%AC%EB%A8%B8%EC%B9%98+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+49&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EB%95%A1%ED%81%90%EB%B2%A0%EB%A6%AC%EB%A8%B8%EC%B9%98+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%A4%91%EA%B5%90%EB%A1%9C+49&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "케이크와 커피 한 잔"
   },
   {
     "name": "무의식",
@@ -96,7 +128,9 @@
     "lng": 127.418473,
     "googlePlaceId": "ChIJ603IT_9JZTUROHpF7jiuEOI",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EB%AC%B4%EC%9D%98%EC%8B%9D+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%84%A0%ED%99%94%EC%84%9C%EB%A1%9C+42&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EB%AC%B4%EC%9D%98%EC%8B%9D+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EC%84%A0%ED%99%94%EC%84%9C%EB%A1%9C+42&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "티라미수와 커피 한 잔"
   },
   {
     "name": "장원갑칼국수 대전중구점",
@@ -105,7 +139,9 @@
     "lng": 127.4283787,
     "googlePlaceId": "ChIJ04pDPwtJZTURASHMVA3WfPw",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EC%9E%A5%EC%9B%90%EA%B0%91%EC%B9%BC%EA%B5%AD%EC%88%98+%EB%8C%80%EC%A0%84%EC%A4%91%EA%B5%AC%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EB%8C%80%EC%A2%85%EB%A1%9C+450+1%EC%B8%B5&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EC%9E%A5%EC%9B%90%EA%B0%91%EC%B9%BC%EA%B5%AD%EC%88%98+%EB%8C%80%EC%A0%84%EC%A4%91%EA%B5%AC%EC%A0%90+%EB%8C%80%EC%A0%84+%EC%A4%91%EA%B5%AC+%EB%8C%80%EC%A2%85%EB%A1%9C+450+1%EC%B8%B5&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "조치원 본점보다 맛있다고 알려진 곳"
   },
   {
     "name": "오씨칼국수",
@@ -114,7 +150,9 @@
     "lng": 127.4250897,
     "googlePlaceId": "ChIJ1fprgdxIZTURpe35TqlWF64",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%EC%98%A4%EC%94%A8%EC%B9%BC%EA%B5%AD%EC%88%98+%EB%8C%80%EC%A0%84+%EB%8F%99%EA%B5%AC+%EC%98%9B%EC%8B%A0%ED%83%84%EC%A7%84%EB%A1%9C+13&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%EC%98%A4%EC%94%A8%EC%B9%BC%EA%B5%AD%EC%88%98+%EB%8C%80%EC%A0%84+%EB%8F%99%EA%B5%AC+%EC%98%9B%EC%8B%A0%ED%83%84%EC%A7%84%EB%A1%9C+13&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "대전에서 들러보시길 추천하는 칼국수집"
   },
   {
     "name": "태화장",
@@ -123,6 +161,8 @@
     "lng": 127.4293612,
     "googlePlaceId": "ChIJw1sUIN5IZTURz67vVniY5A0",
     "verifiedAt": "2026-10-01",
-    "source": "https://www.google.com/maps?q=%ED%83%9C%ED%99%94%EC%9E%A5+%EB%8C%80%EC%A0%84+%EB%8F%99%EA%B5%AC+%EC%A4%91%EC%95%99%EB%A1%9C203%EB%B2%88%EA%B8%B8+78&output=embed&hl=ko"
+    "source": "https://www.google.com/maps?q=%ED%83%9C%ED%99%94%EC%9E%A5+%EB%8C%80%EC%A0%84+%EB%8F%99%EA%B5%AC+%EC%A4%91%EC%95%99%EB%A1%9C203%EB%B2%88%EA%B8%B8+78&output=embed&hl=ko",
+    "parkingStars": 1,
+    "note": "대전에서 들러보시길 추천하는 중식당"
   }
 ]
