@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>ETC · 대전 맛집 안내</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    :root{ --bg:#efebe9; --bg-soft:#fff; --text:rgba(0,0,0,.82); --text-muted:rgba(0,0,0,.62); --line:rgba(0,0,0,.12); --accent:#a8434a; --radius:6px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif; line-height:1.7; word-break:keep-all; }
+    .etc-header{ max-width:480px; margin:auto; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .etc-header h1{ margin:0; font-family:Georgia,serif; font-size:1rem; font-weight:500; letter-spacing:2px; }
+    .back-link{ display:inline-flex; align-items:center; min-height:44px; color:var(--text-muted); text-decoration:none; font-size:.8rem; }
+    .back-link:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+    .section{ max-width:480px; margin:0 auto; padding:44px 24px 64px; }
+    .section-title{ margin:0; text-align:center; font-size:1.2rem; font-weight:600; letter-spacing:1px; }
+      .local-guide-eyebrow{ margin:0 0 8px; text-align:center; font-size:.75rem; color:var(--accent); }
+  #local-guide .section-title{ margin-bottom:16px; }
+  .local-guide-intro{ margin:0 0 28px; text-align:center; font-size:.82rem; color:var(--text-muted); }
+  .local-guide-group{ border-top:1px solid var(--line); }
+  .local-guide-group:last-child{ border-bottom:1px solid var(--line); }
+  .local-guide-group summary{ padding:18px 0; cursor:pointer; font-size:.82rem; }
+  .local-guide-count{ margin-left:8px; color:var(--text-muted); font-size:.7rem; white-space:nowrap; }
+  .local-guide-group ul{ list-style:none; margin:0; padding:0 0 8px; }
+  .local-guide-group li{ padding:16px; margin-bottom:12px; background:var(--bg-soft); border-radius:var(--radius); }
+  .local-guide-group h3{ margin:0 0 6px; font-size:.86rem; }
+  .local-guide-group p{ margin:4px 0; font-size:.76rem; overflow-wrap:anywhere; }
+  .local-guide-address{ color:var(--text-muted); }
+  .local-guide-group a{ display:inline-flex; align-items:center; gap:6px; min-height:44px; color:var(--accent); font-size:.78rem; text-underline-offset:4px; }
+  .local-guide-group summary:focus-visible, .local-guide-group a:focus-visible,
+  .map-recovery button:focus-visible, .map-recovery a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+    @media(max-width:360px){ .section{ padding-left:20px; padding-right:20px; } }
+  </style>
+</head>
+<body>
+  <header class="etc-header"><a class="back-link" href="./">← 청첩장으로</a><h1>ETC</h1></header>
+  <main><section class="section" id="local-guide" aria-labelledby="local-guide-title">
+  <p class="local-guide-eyebrow">잠시 더 머무는 대전</p>
+  <h2 class="section-title" id="local-guide-title">맛집 안내</h2>
+  <p class="local-guide-intro">먼 길 와주신 여러분께<br>들러보셨으면 하는 곳들을 소개합니다.</p>
+  <details class="local-guide-group"><summary>테이크아웃으로 즐겨요<span class="local-guide-count">3곳</span></summary><ul><li><h3>신동명의 커피공간</h3><p class="local-guide-note">집으로 가는 길에 필요한 맛있는 커피. 원두를 선택할 수 있어요.</p><p class="local-guide-address">대전 중구 과례로 94</p><a href="https://map.naver.com/p/search/%EC%8B%A0%EB%8F%99%EB%AA%85%EC%9D%98%20%EC%BB%A4%ED%94%BC%EA%B3%B5%EA%B0%84%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EA%B3%BC%EB%A1%80%EB%A1%9C%2094" target="_blank" rel="noopener noreferrer" aria-label="신동명의 커피공간 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>다다제과점</h3><p class="local-guide-note">샌드베이글 맛집</p><p class="local-guide-address">대전 중구 중교로 11</p><a href="https://map.naver.com/p/search/%EB%8B%A4%EB%8B%A4%EC%A0%9C%EA%B3%BC%EC%A0%90%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EC%A4%91%EA%B5%90%EB%A1%9C%2011" target="_blank" rel="noopener noreferrer" aria-label="다다제과점 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>굿베이글</h3><p class="local-guide-note">베이글 맛집</p><p class="local-guide-address">대전 중구 과례로 74-29</p><a href="https://map.naver.com/p/search/%EA%B5%BF%EB%B2%A0%EC%9D%B4%EA%B8%80%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EA%B3%BC%EB%A1%80%EB%A1%9C%2074-29" target="_blank" rel="noopener noreferrer" aria-label="굿베이글 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li></ul></details>
+<details class="local-guide-group"><summary>빵의 도시, 대전<span class="local-guide-count">1곳</span></summary><ul><li><h3>성심당 롯데백화점 대전점</h3><p class="local-guide-note">롯데백화점에 주차할 수 있어 편리해요.</p><p class="local-guide-address">대전 서구 계룡로 598</p><a href="https://map.naver.com/p/search/%EC%84%B1%EC%8B%AC%EB%8B%B9%20%EB%A1%AF%EB%8D%B0%EB%B0%B1%ED%99%94%EC%A0%90%20%EB%8C%80%EC%A0%84%EC%A0%90%20%EB%8C%80%EC%A0%84%20%EC%84%9C%EA%B5%AC%20%EA%B3%84%EB%A3%A1%EB%A1%9C%20598" target="_blank" rel="noopener noreferrer" aria-label="성심당 롯데백화점 대전점 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li></ul></details>
+<details class="local-guide-group"><summary>예식장 근처에서 커피 한 잔<span class="local-guide-count">3곳</span></summary><ul><li><h3>평생직장커피</h3><p class="local-guide-note">분위기 좋은 카페</p><p class="local-guide-address">대전 중구 계룡로874번길 71</p><a href="https://map.naver.com/p/search/%ED%8F%89%EC%83%9D%EC%A7%81%EC%9E%A5%EC%BB%A4%ED%94%BC%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EA%B3%84%EB%A3%A1%EB%A1%9C874%EB%B2%88%EA%B8%B8%2071" target="_blank" rel="noopener noreferrer" aria-label="평생직장커피 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>넛팅</h3><p class="local-guide-note">깔끔한 카페</p><p class="local-guide-address">대전 중구 오류로 31</p><a href="https://map.naver.com/p/search/%EB%84%9B%ED%8C%85%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EC%98%A4%EB%A5%98%EB%A1%9C%2031" target="_blank" rel="noopener noreferrer" aria-label="넛팅 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>카페코지</h3><p class="local-guide-note">분위기 좋은 카페</p><p class="local-guide-address">대전 중구 계룡로882번길 106</p><a href="https://map.naver.com/p/search/%EC%B9%B4%ED%8E%98%EC%BD%94%EC%A7%80%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EA%B3%84%EB%A3%A1%EB%A1%9C882%EB%B2%88%EA%B8%B8%20106" target="_blank" rel="noopener noreferrer" aria-label="카페코지 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li></ul></details>
+<details class="local-guide-group"><summary>중심가에서 디저트와 커피<span class="local-guide-count">4곳</span></summary><ul><li><h3>로로네베이커리</h3><p class="local-guide-note">빵과 커피 한 잔</p><p class="local-guide-address">대전 중구 중교로 30</p><a href="https://map.naver.com/p/search/%EB%A1%9C%EB%A1%9C%EB%84%A4%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EC%A4%91%EA%B5%90%EB%A1%9C%2030" target="_blank" rel="noopener noreferrer" aria-label="로로네베이커리 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>하이드아웃</h3><p class="local-guide-note">케이크와 커피 한 잔</p><p class="local-guide-address">대전 중구 대흥로121번길 17</p><a href="https://map.naver.com/p/search/%ED%95%98%EC%9D%B4%EB%93%9C%EC%95%84%EC%9B%83%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EB%8C%80%ED%9D%A5%EB%A1%9C121%EB%B2%88%EA%B8%B8%2017" target="_blank" rel="noopener noreferrer" aria-label="하이드아웃 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>땡큐베리머치</h3><p class="local-guide-note">케이크와 커피 한 잔</p><p class="local-guide-address">대전 중구 중교로 49</p><a href="https://map.naver.com/p/search/%EB%95%A1%ED%81%90%EB%B2%A0%EB%A6%AC%EB%A8%B8%EC%B9%98%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EC%A4%91%EA%B5%90%EB%A1%9C%2049" target="_blank" rel="noopener noreferrer" aria-label="땡큐베리머치 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>무의식</h3><p class="local-guide-note">티라미수와 커피 한 잔</p><p class="local-guide-address">대전 중구 선화서로 42</p><a href="https://map.naver.com/p/search/%EB%AC%B4%EC%9D%98%EC%8B%9D%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EC%84%A0%ED%99%94%EC%84%9C%EB%A1%9C%2042" target="_blank" rel="noopener noreferrer" aria-label="무의식 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li></ul></details>
+<details class="local-guide-group"><summary>밀가루의 도시, 대전<span class="local-guide-count">3곳</span></summary><ul><li><h3>장원갑칼국수 대전중구점</h3><p class="local-guide-note">조치원 본점보다 맛있다고 알려진 곳</p><p class="local-guide-address">대전 중구 대종로 450 1층</p><a href="https://map.naver.com/p/search/%EC%9E%A5%EC%9B%90%EA%B0%91%EC%B9%BC%EA%B5%AD%EC%88%98%20%EB%8C%80%EC%A0%84%EC%A4%91%EA%B5%AC%EC%A0%90%20%EB%8C%80%EC%A0%84%20%EC%A4%91%EA%B5%AC%20%EB%8C%80%EC%A2%85%EB%A1%9C%20450%201%EC%B8%B5" target="_blank" rel="noopener noreferrer" aria-label="장원갑칼국수 대전중구점 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>오씨칼국수</h3><p class="local-guide-address">대전 동구 옛신탄진로 13</p><a href="https://map.naver.com/p/search/%EC%98%A4%EC%94%A8%EC%B9%BC%EA%B5%AD%EC%88%98%20%EB%8C%80%EC%A0%84%20%EB%8F%99%EA%B5%AC%20%EC%98%9B%EC%8B%A0%ED%83%84%EC%A7%84%EB%A1%9C%2013" target="_blank" rel="noopener noreferrer" aria-label="오씨칼국수 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li><li><h3>태화장</h3><p class="local-guide-address">대전 동구 중앙로203번길 78</p><a href="https://map.naver.com/p/search/%ED%83%9C%ED%99%94%EC%9E%A5%20%EB%8C%80%EC%A0%84%20%EB%8F%99%EA%B5%AC%20%EC%A4%91%EC%95%99%EB%A1%9C203%EB%B2%88%EA%B8%B8%2078" target="_blank" rel="noopener noreferrer" aria-label="태화장 네이버지도에서 보기 (새 창)">지도 보기 <span aria-hidden="true">↗</span></a></li></ul></details>
+</section></main>
+</body>
+</html>
