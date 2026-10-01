@@ -43,6 +43,14 @@
   }
 
   function open(service, place) {
+    if (service === 'kakaonavi') {
+      if (window.Kakao?.isInitialized?.()) {
+        window.Kakao.Navi.start({ name: place.name, x: Number(place.lng), y: Number(place.lat), coordType: 'wgs84' });
+      } else if (typeof window.showToast === 'function') {
+        window.showToast('카카오내비 연결을 준비하고 있습니다. 다른 지도 버튼을 이용해주세요.');
+      }
+      return;
+    }
     const target = targets(service, place);
     if (!target) return;
     if (/Android/i.test(navigator.userAgent)) {
@@ -70,6 +78,26 @@
   }
 
   window.WeddingMaps = { open, targets, androidIntent };
+  function configureKakaoNavi() {
+    const button = document.querySelector('[onclick="openMapApp(\'kakaonavi\')"]');
+    if (!button) return;
+    const key = window.WeddingKakaoNavi?.javascriptKey;
+    button.disabled = true;
+    button.title = '카카오내비 연결 준비 중';
+    button.setAttribute('aria-label', '카카오내비 연결 준비 중');
+    if (!/^[a-f0-9]{32}$/i.test(key || '')) return;
+    const sdk = document.createElement('script');
+    sdk.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.8.3/kakao.min.js';
+    sdk.onload = () => {
+      if (!window.Kakao.isInitialized()) window.Kakao.init(key);
+      button.disabled = false;
+      button.title = '카카오내비 앱으로 길 안내';
+      button.setAttribute('aria-label', '카카오내비 앱으로 열기');
+    };
+    document.head.appendChild(sdk);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', configureKakaoNavi);
+  else configureKakaoNavi();
   document.addEventListener('click', event => {
     const link = event.target.closest('[data-map-service]');
     if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

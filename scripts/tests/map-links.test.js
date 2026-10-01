@@ -7,13 +7,13 @@ function runtime(userAgent) {
   const events = {};
   const opened = [];
   const timers = new Map();
-  const document = { hidden: false, addEventListener: (name, fn) => { events[name] = fn; }, removeEventListener: name => { delete events[name]; } };
+  const document = { readyState: 'loading', hidden: false, addEventListener: (name, fn) => { events[name] = fn; }, removeEventListener: name => { delete events[name]; } };
   const window = { top: { location: {} }, open: url => opened.push(url), addEventListener() {}, removeEventListener() {} };
   vm.runInNewContext(source, { document, window, navigator: { userAgent }, URLSearchParams, setTimeout: fn => { timers.set(1, fn); return 1; }, clearTimeout: id => timers.delete(id) });
   return { window, document, events, opened, timers };
 }
 const guide = fs.readFileSync('docs/etc.html', 'utf8');
-assert(guide.includes('assets/map-links.js?v=20261002-tmap'));
+assert(guide.includes('assets/map-links.js?v=20261002-audio-zoom'));
 assert.equal((guide.match(/data-map-service=/g) || []).length, places.length * 3);
 for (const place of [...places, { name: 'BMK웨딩홀', address: '대전 중구 서문로 133', lat: 36.3198898, lng: 127.4051471 }]) {
   for (const service of ['naver', 'kakaomap', 'google']) {
@@ -90,3 +90,20 @@ const tmapDesktop = runtime('Macintosh Chrome');
 tmapDesktop.window.WeddingMaps.open('tmap', venue);
 assert.equal(tmapDesktop.opened[0], storeFallback);
 console.log('PASS: TMAP venue route parameters, Android package, iOS scheme, installed/missing-app handling and desktop installation link.');
+const noKey = runtime('Android Chrome');
+let navigated;
+noKey.window.showToast = () => {};
+noKey.window.WeddingMaps.open('kakaonavi', venue);
+assert.equal(noKey.window.top.location.href, undefined, 'Unconfigured Navi must not fall through to Kakao Map');
+const readyNavi = runtime('Android Chrome');
+readyNavi.window.Kakao = { isInitialized: () => true, Navi: { start: options => { navigated = options; } } };
+readyNavi.window.WeddingMaps.open('kakaonavi', venue);
+assert.equal(navigated.name, venue.name);
+assert.equal(navigated.x, venue.lng);
+assert.equal(navigated.y, venue.lat);
+assert.equal(navigated.coordType, 'wgs84');
+const button = { setAttribute() {} };
+noKey.document.querySelector = () => button;
+noKey.events.DOMContentLoaded();
+assert.equal(button.disabled, true);
+console.log('PASS: Kakao Navi official SDK destination and no-key state without web-map fallback.');
