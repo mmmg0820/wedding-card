@@ -19,12 +19,12 @@ html = html.replace(/<li><h3>([^<]+)<\/h3>[\s\S]*?<\/li>/g, (item, name) => {
   }
   const { lat, lng } = place;
   const links = [
-    ['네이버지도', 'https://map.naver.com/p/?' + new URLSearchParams({ title: name, lng, lat, zoom: 16, type: 0 })],
-    ['카카오맵', `https://map.kakao.com/link/map/${encodeURIComponent(name)},${lat},${lng}`],
-    ['구글맵', 'https://www.google.com/maps/search/?' + new URLSearchParams({ api: 1, query: `${lat},${lng}`, query_place_id: place.googlePlaceId })],
+    ['네이버지도', `https://map.naver.com/p/search/${encodeURIComponent(name + ' ' + place.address)}`, 'naver'],
+    ['카카오맵', `https://map.kakao.com/link/map/${encodeURIComponent(name)},${lat},${lng}`, 'kakaomap'],
+    ['구글맵', 'https://www.google.com/maps/search/?' + new URLSearchParams({ api: 1, query: `${lat},${lng}`, query_place_id: place.googlePlaceId }), 'google'],
   ];
-  const buttons = links.map(([label, url]) =>
-    `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(name)} ${label}에서 보기 (새 창)">${label}</a>`
+  const buttons = links.map(([label, url, service]) =>
+    `<a href="${escapeHtml(url)}" data-map-service="${service}" data-place-name="${escapeHtml(name)}" data-place-address="${escapeHtml(place.address)}" data-lat="${lat}" data-lng="${lng}" data-google-place-id="${escapeHtml(place.googlePlaceId)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(name)} ${label}에서 보기">${label}</a>`
   ).join('');
   if (!item.includes('class="local-guide-address"')) throw new Error(`Missing address for ${name}`);
   updated++;

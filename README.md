@@ -71,6 +71,8 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 - 신랑·신부가 제공한 장소와 성심당 본점을 포함한 17곳의 이름·주소·추천 문구와 주소 아래 네이버지도·카카오맵·구글맵 버튼
 - 세 지도 모두 같은 위도·경도로 연결하며 구글맵은 업체 Place ID도 지정
 - `scripts/data/local-guide-places.json`에 2026-10-01 확인한 좌표와 출처 보관, `node scripts/update-local-guide-map-links.js`로 버튼 갱신
+- 지도 버튼은 `docs/assets/map-links.js`에서 Android Intent로 장소 좌표를 앱에 전달합니다. 네이버는 장소 마커, 카카오는 좌표 마커, 구글은 좌표와 Place ID를 사용하며, 앱이 없으면 웹 지도로 연결합니다.
+- 지도 연결 검사: `node scripts/tests/map-links.test.js`. 청첩장 암호화 본문에 연결기를 적용하는 스크립트: `node scripts/fix-place-map-launch.js`.
 - 굿베이글 주소는 업체 등록 주소에 따라 `과례로 79-24`로 정정
 - 근교 추천 우리베이커리(주차 별 3개)와 “우리가 살았던 세종의 추억”의 소로리쌀상회(주차 별 5개) 추가
 - 우리베이커리 접근 안내는 중부고속도로 청주 강서 하이패스IC로 표기
