@@ -16,7 +16,7 @@ GitHub Pages에서 정적 호스팅하는 모바일 우선 청첩장입니다. �
 8. 마음 전하실 곳
 9. 축하 메시지
 
-상단 메뉴는 `Home`, `Story`, `Day`, `Gallery`, `Location`, `Accounts`, `Messages` 순서입니다. `Accounts`는 마음 전하실 곳, `Messages`는 축하 메시지로 이동하며, 모든 메뉴는 본문의 해당 섹션으로 부드럽게 스크롤합니다. 좁은 화면에서는 메뉴가 다음 줄로 이어져 모든 항목을 표시합니다. 갤러리를 비활성화하면 갤러리 본문과 상단 메뉴가 함께 숨겨집니다.
+상단 메뉴는 `Story`, `Day`, `Gallery`, `Location`, `Accounts`, `Messages` 순서입니다. `Accounts`는 마음 전하실 곳, `Messages`는 축하 메시지로 이동하며, 모든 메뉴는 본문의 해당 섹션으로 부드럽게 스크롤합니다. 좁은 화면에서는 메뉴가 다음 줄로 이어져 모든 항목을 표시합니다. 갤러리를 비활성화하면 갤러리 본문과 상단 메뉴가 함께 숨겨집니다.
 
 WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정으로 숨겨져 있습니다. 사진 데이터는 보존되어 있어 필요할 때 설정을 `"ON"`으로 바꾸면 다시 표시할 수 있습니다.
 
@@ -43,7 +43,7 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 
 - Google Maps 임베드 지도: 직접 임베드 주소로 즉시 로드하고, 지도에는 스크롤 숨김 애니메이션을 적용하지 않음
 - 지도 새로고침 및 네이버지도 새 창 보기 제공
-- 자동차 안내 아래 한 줄에 표시되는 지도·내비게이션 앱 아이콘 5개
+- BMK웨딩홀 이름·주소 아래 한 줄에 표시되는 지도·내비게이션 앱 아이콘 5개
   - 네이버지도
   - 카카오내비
   - 카카오맵
@@ -64,7 +64,10 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 - 축하 메시지 아래의 `잠시 더 머무는 대전` 버튼을 누르면 별도 `etc.html` 페이지에서 표시
 - `청첩장으로` 링크로 본문에 복귀
 - 테이크아웃, 빵집, 예식장 근처 카페, 중심가 디저트, 식사 등 5개 접이식 목록
-- 신랑·신부가 제공한 14곳의 이름·주소·추천 문구와 장소별 네이버지도 검색 링크
+- 신랑·신부가 제공한 14곳의 이름·주소·추천 문구와 주소 아래 네이버지도·카카오맵·구글맵 버튼
+- 세 지도 모두 같은 위도·경도로 연결하며 구글맵은 업체 Place ID도 지정
+- `scripts/data/local-guide-places.json`에 2026-10-01 확인한 좌표와 출처 보관, `node scripts/update-local-guide-map-links.js`로 버튼 갱신
+- 굿베이글 주소는 업체 등록 주소에 따라 `과례로 79-24`로 정정
 - `scripts/add-local-guide-and-map-recovery.js`에서 목록과 지도 보완 변경 이력, `scripts/move-guide-to-etc-page.js`에서 별도 페이지 분리 이력 확인 가능
 
 ### 계좌 및 축하 메시지
@@ -73,6 +76,8 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 - 신랑 측과 신부 측 계좌 패널을 동시에 열 수 없도록 상호 배타적으로 동작
 - 계좌번호 복사 기능 및 안내 토스트 제공
 - Firebase 기반 축하 메시지 작성·조회 기능
+
+송금 링크 검토(2026-10-01): [카카오페이 코드송금](https://developers.kakaopay.com/products/moneytransfer/sendmoney.link)은 수취인 본인이 발급한 링크로 연결 가능하다. 실제 개인 송금 링크를 받은 뒤 적용해야 하며 현재 버튼은 추가하지 않았다. 토스는 [토스아이디 서비스 종료](https://toss.me/fade-out-notice/external?service=toss-me)로 기존 `toss.me` 방식을 사용할 수 없다. 웹사이트용 송금 딥링크는 현재 공식 지원 및 안드로이드 Chrome 동작을 확인하지 못해 적용하지 않았다.
 
 ### 모바일 및 접근성
 
