@@ -46,6 +46,7 @@
 
     @media(max-width:360px){ .section{ padding-left:20px; padding-right:20px; } }
     #guide-audio-toggle{ position:fixed; left:20px; bottom:20px; min-width:40px; min-height:40px; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.95); color:var(--text-muted); font:inherit; font-size:.75rem; cursor:pointer; }
+  #guide-audio-toggle.is-playing .guide-music-note{ color:#c53c45; }
   #guide-audio-toggle[hidden]{ display:none; }
 </style>
 </head>
@@ -76,8 +77,8 @@
   const button=document.getElementById('guide-audio-toggle');
   if(!player)return;
   button.hidden=false;
-  const update=()=>{button.textContent=player.paused?'음악 켜기':'음악 끄기';button.setAttribute('aria-label',player.paused?'배경음악 재생':'배경음악 일시정지');button.setAttribute('aria-pressed',String(!player.paused));};
-  player.addEventListener('play',update);player.addEventListener('pause',update);update();
+  const update=()=>{button.innerHTML='<span class="guide-music-note" aria-hidden="true">♪</span> '+(player.paused?'음악 켜기':'음악 끄기');button.classList.toggle('is-playing',!player.paused&&!player.ended);button.setAttribute('aria-label',player.paused?'배경음악 재생':'배경음악 일시정지');button.setAttribute('aria-pressed',String(!player.paused));};
+  player.addEventListener('play',update);player.addEventListener('pause',update);player.addEventListener('ended',update);player.addEventListener('error',update);update();
   button.addEventListener('click',()=>{if(player.paused)player.play().catch(()=>{});else player.pause();});
 })();
 </script></body>
