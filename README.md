@@ -35,6 +35,9 @@ WEDDING DAY 아래 예식장 사진은 현재 `eventPhotoEnabled: "OFF"` 설정�
 
 - 모바일 기준 3열 정사각형 썸네일 배치
 - 현재 갤러리 사진 5장 내장
+- 사진의 긴 변은 최대 2,000px로 제한하고 비율을 유지합니다. JPEG 품질 85로 압축하며, 첫 화면 일러스트는 해상도를 유지한 WebP 품질 90으로 압축했습니다.
+- 사진 압축 후 초기 암호화 파일은 약 2.3MB입니다. 원본은 이전 Git 커밋에서 복원할 수 있습니다.
+- 압축 이력은 `scripts/data/photo-compression-report.json`에 해상도·용량으로 기록하며, `scripts/resize-invitation-photos.js`와 `scripts/compress-photo-assets.py`로 처리합니다. Python Pillow가 필요하며 별도 Python 경로는 `WEDDING_IMAGE_PYTHON`으로 지정합니다.
 - 사진을 누르면 현재 화면의 최대 80% 크기로 확대
 - 확대 시 원본 비율 유지 및 가벼운 페이드·스케일 애니메이션 적용
 - `×` 버튼, 바깥 배경, 사진 더블 클릭, `Esc` 키로 닫기

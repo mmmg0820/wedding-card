@@ -1,0 +1,72 @@
+[
+  {
+    "asset": "hero",
+    "originalWidth": 912,
+    "originalHeight": 1154,
+    "width": 912,
+    "height": 1154,
+    "originalBytes": 1622255,
+    "bytes": 144054,
+    "format": "webp"
+  },
+  {
+    "asset": "photo-1",
+    "originalWidth": 1280,
+    "originalHeight": 853,
+    "width": 1280,
+    "height": 853,
+    "originalBytes": 317081,
+    "bytes": 259622,
+    "format": "jpeg"
+  },
+  {
+    "asset": "photo-2",
+    "originalWidth": 2316,
+    "originalHeight": 3088,
+    "width": 1500,
+    "height": 2000,
+    "originalBytes": 2620906,
+    "bytes": 646164,
+    "format": "jpeg"
+  },
+  {
+    "asset": "photo-3",
+    "originalWidth": 1616,
+    "originalHeight": 1080,
+    "width": 1616,
+    "height": 1080,
+    "originalBytes": 462951,
+    "bytes": 127105,
+    "format": "jpeg"
+  },
+  {
+    "asset": "photo-4",
+    "originalWidth": 3024,
+    "originalHeight": 4032,
+    "width": 1500,
+    "height": 2000,
+    "originalBytes": 4471637,
+    "bytes": 386016,
+    "format": "jpeg"
+  },
+  {
+    "asset": "photo-5",
+    "originalWidth": 1616,
+    "originalHeight": 1080,
+    "width": 1616,
+    "height": 1080,
+    "originalBytes": 815640,
+    "bytes": 274440,
+    "format": "jpeg"
+  },
+  {
+    "asset": "photo-6",
+    "originalWidth": 1568,
+    "originalHeight": 1532,
+    "width": 1568,
+    "height": 1532,
+    "originalBytes": 661632,
+    "bytes": 275792,
+    "format": "jpeg"
+  }
+]
