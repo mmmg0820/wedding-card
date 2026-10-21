@@ -1,0 +1,27 @@
+name: Append four wedding gallery photos once
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/wedding-gallery-add-18.yml'
+permissions:
+  contents: write
+jobs:
+  append-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Append four WebP photos inside existing encrypted gallery
+        run: |
+          node scripts/append-gallery-photos-18.js docs/assets/invitation.enc docs/images/gallery-extra docs/index.html
+          test -s docs/assets/invitation.enc
+          git config user.name "wedding-card-gallery-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets/invitation.enc
+          git rm -f docs/images/gallery-extra/*.webp scripts/append-gallery-photos-18.js .github/workflows/wedding-gallery-add-18.yml
+          git diff --cached --check
+          git commit -m "Finish gallery: append four blue dress images for 18 total"
+          git push
