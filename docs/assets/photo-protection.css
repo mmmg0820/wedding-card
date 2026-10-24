@@ -1,0 +1,22 @@
+/* Best-effort photo protections, not DRM or a screenshot/download guarantee. */
+html,
+body,
+#v {
+  /* Keep ordinary scrolling while opting out of page pinch/double-tap zoom. */
+  touch-action: pan-x pan-y;
+}
+
+img,
+.hero,
+.gallery-item,
+#event-photo,
+#l {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.gallery-item {
+  cursor: default;
+}
