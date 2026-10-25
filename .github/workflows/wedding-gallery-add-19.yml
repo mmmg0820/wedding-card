@@ -1,0 +1,27 @@
+name: Append nineteenth wedding gallery photo once
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/wedding-gallery-add-19.yml'
+permissions:
+  contents: write
+jobs:
+  append-gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Append one WebP photo inside encrypted gallery
+        run: |
+          node scripts/append-gallery-photo-19.js docs/assets/invitation.enc docs/images/gallery-extra docs/index.html
+          test -s docs/assets/invitation.enc
+          git config user.name "wedding-card-gallery-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets/invitation.enc
+          git rm -f docs/images/gallery-extra/*.webp scripts/append-gallery-photo-19.js .github/workflows/wedding-gallery-add-19.yml
+          git diff --cached --check
+          git commit -m "Finish gallery: append nineteenth wedding image"
+          git push
