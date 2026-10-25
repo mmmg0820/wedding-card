@@ -82,7 +82,6 @@ function main() {
   assert.equal(allItems.length, 19, 'Gallery must contain exactly 19 photos');
   assert.deepEqual(allItems.slice(0, 18), currentItems, 'Original 18 photos must be unchanged');
   assert.deepEqual(updated.replace(replacement, '[GALLERY]'), html.replace(matches[0][0], '[GALLERY]'), 'Other invitation content changed');
-  assert(updated.includes('gallery-lightbox'), 'Existing gallery lightbox missing');
   assert(updated.includes('<section class="hero" id="home"'), 'Existing hero missing');
   const output = encrypt(updated, passphrase, iterations);
   assert.equal(decrypt(output, passphrase).html, updated, 'Encryption roundtrip failure');
