@@ -72,6 +72,29 @@ img,
 .gallery-position { text-align: center; font-size: 12px; line-height: 1.6; color: var(--text-muted, #746b67); }
 .gallery-position span { display: block; }
 
+/* Expanded mode reuses the same photos in their original order, without duplicates. */
+#gallery .gallery-grid[data-expanded="true"] {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: visible;
+  scroll-snap-type: none;
+}
+.gallery-controls[hidden], .gallery-expand[hidden] { display: none; }
+.gallery-expand {
+  display: block;
+  min-height: 44px;
+  margin: 12px auto 0;
+  padding: 8px 24px;
+  border: 1px solid var(--line, #ddd);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.gallery-expand:focus-visible { outline: 2px solid var(--accent, #a8434a); outline-offset: 2px; }
+
 /* The fitted viewer alone opts out of additional pinch/double-tap zoom. */
 .photo-viewer {
   position: fixed;

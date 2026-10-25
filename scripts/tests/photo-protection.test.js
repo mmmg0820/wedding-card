@@ -15,9 +15,9 @@ const originalShell = childProcess.execFileSync('git', ['show', `${sourceRevisio
 assert.equal(current, protectInvitation(original), 'Only the exact intended migration changes are present');
 const expectedShell = protectShell(originalShell)
   .replace('width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', 'width=device-width, initial-scale=1')
-  .replace('href="assets/photo-protection.css?v=20261024"', 'href="assets/photo-protection.css?v=20261024-viewer"')
-  .replace('src="assets/photo-protection.js?v=20261024"', 'src="assets/photo-protection.js?v=20261024-viewer"')
-  .replace('v.srcdoc=updated.replace("</head>",coverCSS+"</head>");', 'v.srcdoc=updated.replace("width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no","width=device-width, initial-scale=1").replaceAll("assets/photo-protection.css?v=20261024","assets/photo-protection.css?v=20261024-viewer").replaceAll("assets/photo-protection.js?v=20261024","assets/photo-protection.js?v=20261024-viewer").replace("</head>",coverCSS+"</head>");');
+  .replace('href="assets/photo-protection.css?v=20261024"', 'href="assets/photo-protection.css?v=20261025-expand"')
+  .replace('src="assets/photo-protection.js?v=20261024"', 'src="assets/photo-protection.js?v=20261025-expand"')
+  .replace('v.srcdoc=updated.replace("</head>",coverCSS+"</head>");', 'v.srcdoc=updated.replace("width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no","width=device-width, initial-scale=1").replaceAll("assets/photo-protection.css?v=20261024","assets/photo-protection.css?v=20261025-expand").replaceAll("assets/photo-protection.js?v=20261024","assets/photo-protection.js?v=20261025-expand").replace("</head>",coverCSS+"</head>");');
 assert.equal(fs.readFileSync('docs/index.html', 'utf8'), expectedShell);
 const rendered = current.replace('width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', 'width=device-width, initial-scale=1');
 for (const html of [rendered, expectedShell]) {

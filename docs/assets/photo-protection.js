@@ -32,9 +32,13 @@
   const setupGallery = () => {
     const gallery = document.getElementById('gallery-container');
     if (!gallery || gallery.dataset.swipeReady === 'true') return;
-    const photos = Array.from(gallery.children);
+    const originalPhotos = Array.from(gallery.children);
+    // Omit the current eighteenth photo from display only; its encrypted source is retained.
+    originalPhotos[17]?.remove();
+    const photos = originalPhotos.filter((item, index) => index !== 17);
     if (!photos.length) return;
     gallery.dataset.swipeReady = 'true';
+    gallery.dataset.expanded = 'false';
     gallery.tabIndex = 0;
     gallery.setAttribute('role', 'region');
     gallery.setAttribute('aria-label', '사진 갤러리, 좌우로 넘겨 보기');
@@ -169,11 +173,24 @@
     next.setAttribute('aria-label', '다음 사진 3장 보기');
     next.setAttribute('aria-controls', gallery.id);
     controls.append(previous, position, next);
+    controls.hidden = false;
     gallery.parentElement.append(controls);
+    const expand = document.createElement('button');
+    expand.type = 'button';
+    expand.className = 'gallery-expand';
+    expand.textContent = '펼치기';
+    expand.setAttribute('aria-expanded', 'false');
+    expand.setAttribute('aria-controls', gallery.id);
+    expand.hidden = photos.length <= 3;
+    gallery.parentElement.append(expand);
+    let expanded = false;
+    let collapsedIndex = 0;
+    let expansionVersion = 0;
 
     const step = () => photos.length > 1 ? photos[1].offsetLeft - photos[0].offsetLeft : gallery.clientWidth;
     const firstVisible = () => Math.max(0, Math.min(photos.length - 3, Math.round(gallery.scrollLeft / (step() || 1))));
     const update = () => {
+      if (expanded) return;
       const first = firstVisible();
       const label = `${first + 1}–${Math.min(first + 3, photos.length)} / ${photos.length}`;
       if (count.textContent !== label) count.textContent = label;
@@ -187,10 +204,30 @@
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       });
     };
+    expand.addEventListener('click', () => {
+      const version = ++expansionVersion;
+      if (!expanded) collapsedIndex = firstVisible();
+      expanded = !expanded;
+      gallery.dataset.expanded = String(expanded);
+      gallery.setAttribute('aria-label', expanded ? '사진 갤러리, 전체 사진' : '사진 갤러리, 좌우로 넘겨 보기');
+      controls.hidden = expanded;
+      expand.textContent = expanded ? '접기' : '펼치기';
+      expand.setAttribute('aria-expanded', String(expanded));
+      if (expanded) gallery.scrollTo({ left: 0, behavior: 'auto' });
+      else requestAnimationFrame(() => {
+        if (expanded || version !== expansionVersion) return;
+        gallery.scrollTo({ left: photos[collapsedIndex].offsetLeft - photos[0].offsetLeft, behavior: 'auto' });
+        update();
+        gallery.parentElement.scrollIntoView({
+          block: 'nearest',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      });
+    });
     previous.addEventListener('click', () => moveTo(firstVisible() - 3));
     next.addEventListener('click', () => moveTo(firstVisible() + 3));
     gallery.addEventListener('keydown', event => {
-      if (event.target !== gallery) return;
+      if (expanded || event.target !== gallery) return;
       const targets = { ArrowLeft: firstVisible() - 3, ArrowRight: firstVisible() + 3, Home: 0, End: photos.length - 3 };
       if (!(event.key in targets)) return;
       event.preventDefault();
