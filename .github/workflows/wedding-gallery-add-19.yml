@@ -1,4 +1,4 @@
-name: Append nineteenth wedding gallery photo once
+name: Append nineteenth wedding gallery photo once (retry)
 on:
   push:
     branches: [master]
