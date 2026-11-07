@@ -100,6 +100,12 @@ for (const [target, event] of [['document', 'visibilitychange'], ['window', 'pag
 {
   const f = fixture(cutoff - 1, false); f.watch(); f.setNow(cutoff); f.load(); expectAfter(f); checks++;
 }
+{
+  const f = fixture(cutoff + 1000, false); f.watch();
+  assert.equal([...f.timers.values()][0].delay, 100);
+  f.tick(); assert.equal(f.writes, 0);
+  f.load(); expectAfter(f); assert.equal(f.timers.size, 0); checks++;
+}
 const index = fs.readFileSync(__dirname + '/../../docs/index.html', 'utf8');
 assert(index.indexOf('src="assets/bus-schedule.js') < index.indexOf('window.InvitationBus.watch(v)'));
 assert(index.includes('window.InvitationBus.watch(v);window.InvitationCover.watch(v);v.srcdoc='));

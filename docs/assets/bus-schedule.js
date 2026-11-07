@@ -46,6 +46,9 @@
           state.phase = phase;
         }
       }
+      // The iframe load event may wait on maps and images. Apply the bus
+      // details as soon as its DOM exists, including a first visit after 15:00.
+      if (!section) { timer = window.setTimeout(sync, 100); return; }
       const remaining = switchAt - Date.now();
       if (remaining > 0) timer = window.setTimeout(sync, Math.min(remaining, 60000));
     }
