@@ -86,7 +86,7 @@ assert.throws(() => api.prepare('<p>Missing section</p>'));
 assert.throws(() => api.prepare(sample + sample));
 assert(index.includes('updated=window.InvitationBus.prepare(updated);window.InvitationBus.watch(v);'));
 assert(index.includes('window.InvitationCover.watch(v);v.srcdoc='));
-assert(index.includes('cover-schedule.js?v=20261028'));
+assert(index.includes('cover-schedule.js?v=20261107-full-thanks'));
 for (const match of index.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(match[1]);
 checks++;
 console.log('PASS: ' + checks + ' immediate return-bus scenarios; four time zones, before/at/after 15:00, exact text, no morning flash, unchanged phone, preserved iframe and cover scheduler.');
